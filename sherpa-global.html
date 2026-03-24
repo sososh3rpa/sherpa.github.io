@@ -1,0 +1,2502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"/>
+<meta name="theme-color" content="#0B0E1A"/>
+<meta name="description" content="Sherpa Global Association — Preserving and celebrating the rich culture, heritage, language and traditions of the Sherpa community in Sikkim, India."/>
+<meta property="og:title" content="Sherpa Global Association · Sikkim"/>
+<meta property="og:description" content="Guardians of Sikkim's Living Sherpa Heritage"/>
+<title>Sherpa Global Association · Sikkim</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+
+<style>
+/* ================================================================
+   SHERPA GLOBAL ASSOCIATION — SIKKIM
+   Design System · CSS Custom Properties
+   ================================================================ */
+:root{
+  /* — Colors — */
+  --bg-deep:   #06080F;
+  --bg-main:   #0B0E1A;
+  --bg-raised: #111527;
+  --bg-card:   rgba(255,255,255,0.04);
+  --bg-card-h: rgba(255,255,255,0.07);
+  --gold:      #C8922A;
+  --gold-lt:   #E8B84B;
+  --gold-pal:  rgba(200,146,42,0.14);
+  --gold-glow: rgba(200,146,42,0.28);
+  --crimson:   #8B1A1A;
+  --cream:     #F5F0E8;
+  --stone:     #9B9580;
+  --mist:      #C8C4BC;
+  --border:    rgba(255,255,255,0.08);
+  --border-g:  rgba(200,146,42,0.30);
+  /* — Typography — */
+  --fd: 'Cinzel Decorative',serif;
+  --fc: 'Cinzel',serif;
+  --fs: 'Cormorant Garamond',serif;
+  --fm: 'JetBrains Mono',monospace;
+  /* — Layout — */
+  --w: min(1200px,100% - 3rem);
+  --nav-h: 68px;
+  --tick-h: 36px;
+  --r: 14px;
+  --r-sm: 8px;
+  --r-full: 9999px;
+  --py: clamp(4.5rem,9vw,8rem);
+  /* — Motion — */
+  --ease: cubic-bezier(0.16,1,0.3,1);
+  --fast: 0.25s;
+  --med:  0.45s;
+  --slow: 0.7s;
+}
+
+/* ================================================================
+   RESET & BASE
+   ================================================================ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  background:var(--bg-main);
+  color:var(--cream);
+  font-family:var(--fs);
+  font-weight:300;
+  font-size:18px;
+  line-height:1.85;
+  overflow-x:hidden;
+  -webkit-tap-highlight-color:transparent;
+}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+img{max-width:100%;display:block}
+ul{list-style:none}
+input,textarea,select{font-family:inherit}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:var(--bg-deep)}
+::-webkit-scrollbar-thumb{background:var(--gold);border-radius:2px}
+::selection{background:var(--gold-pal);color:var(--gold-lt)}
+
+/* ================================================================
+   SHARED UTILITIES
+   ================================================================ */
+
+/* Topographic SVG pattern */
+.topo{
+  background-image:url("data:image/svg+xml,%3Csvg width='600' height='400' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='white' stroke-opacity='0.022' stroke-width='1'%3E%3Cpath d='M0 350 Q80 320 160 338 T320 330 T480 340 T600 330'/%3E%3Cpath d='M0 310 Q100 275 200 295 T400 285 T600 295'/%3E%3Cpath d='M0 270 Q120 230 240 252 T480 240 T600 260'/%3E%3Cpath d='M0 230 Q150 185 300 210 T600 200'/%3E%3Cpath d='M0 190 Q100 155 220 170 T440 160 T600 175'/%3E%3Cpath d='M0 150 Q180 110 360 130 T600 120'/%3E%3Cpath d='M0 110 Q200 70 380 90 T600 80'/%3E%3Cpath d='M0 70 Q150 40 320 55 T600 50'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat:repeat;
+  background-size:600px 400px;
+}
+
+/* Glass card */
+.glass{
+  background:var(--bg-card);
+  backdrop-filter:blur(24px) saturate(1.3);
+  -webkit-backdrop-filter:blur(24px) saturate(1.3);
+  border:1px solid var(--border);
+  border-radius:var(--r);
+}
+
+/* Container */
+.c{width:var(--w);margin-inline:auto}
+
+/* Section wrapper */
+.sec{padding:var(--py) 0;position:relative;z-index:2}
+
+/* Section tag */
+.stag{
+  font-family:var(--fm);
+  font-size:0.62rem;
+  letter-spacing:0.22em;
+  text-transform:uppercase;
+  color:var(--gold);
+  display:flex;
+  align-items:center;
+  gap:0.6rem;
+  margin-bottom:0.9rem;
+}
+.stag::before{content:'//';opacity:0.45}
+
+/* Section title */
+.stitle{
+  font-family:var(--fd);
+  font-size:clamp(1.7rem,4.5vw,3rem);
+  font-weight:700;
+  line-height:1.05;
+  letter-spacing:-0.01em;
+  margin-bottom:clamp(2rem,5vw,3.5rem);
+}
+.stitle em{
+  font-style:normal;
+  background:linear-gradient(135deg,var(--gold),var(--gold-lt));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+
+/* Divider */
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--gold-pal),transparent);opacity:.6}
+
+/* Reveal animations */
+.rv,.rv-l,.rv-r{opacity:0;transition:opacity var(--slow) var(--ease),transform var(--slow) var(--ease)}
+.rv{transform:translateY(28px)}
+.rv-l{transform:translateX(-28px)}
+.rv-r{transform:translateX(28px)}
+.rv.in,.rv-l.in,.rv-r.in{opacity:1;transform:translate(0)}
+.d1{transition-delay:.07s}.d2{transition-delay:.14s}.d3{transition-delay:.21s}
+.d4{transition-delay:.28s}.d5{transition-delay:.35s}
+
+/* ================================================================
+   NAVIGATION
+   ================================================================ */
+#nav{
+  position:fixed;top:0;inset-inline:0;z-index:900;
+  height:var(--nav-h);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 clamp(1rem,5vw,3rem);
+  transition:background var(--med),box-shadow var(--med),border-color var(--med);
+}
+#nav.sc{
+  background:rgba(11,14,26,0.92);
+  backdrop-filter:blur(28px);
+  -webkit-backdrop-filter:blur(28px);
+  box-shadow:0 1px 0 var(--border);
+}
+.nav-logo{
+  display:flex;align-items:center;gap:0.6rem;
+  font-family:var(--fc);
+  font-size:clamp(0.78rem,1.8vw,0.98rem);
+  font-weight:700;
+  color:var(--gold);
+  letter-spacing:0.06em;
+}
+.logo-gem{
+  width:11px;height:11px;border-radius:50%;
+  background:linear-gradient(135deg,var(--gold),var(--gold-lt));
+  box-shadow:0 0 10px var(--gold);
+  animation:gemPulse 2.5s ease-in-out infinite;
+}
+@keyframes gemPulse{0%,100%{transform:scale(1);opacity:.85}50%{transform:scale(1.45);opacity:1}}
+
+.nav-links{
+  display:flex;gap:clamp(1.2rem,2.5vw,2.2rem);
+  align-items:center;
+}
+.nav-links a{
+  font-family:var(--fm);
+  font-size:0.64rem;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--stone);
+  position:relative;
+  padding-bottom:0.2rem;
+  transition:color var(--fast);
+}
+.nav-links a::after{
+  content:'';
+  position:absolute;bottom:0;left:50%;
+  width:0;height:1px;
+  background:var(--gold);
+  transform:translateX(-50%);
+  transition:width var(--med) var(--ease);
+}
+.nav-links a:hover{color:var(--cream)}
+.nav-links a:hover::after{width:100%}
+
+.nav-cta{
+  font-family:var(--fm);
+  font-size:0.62rem;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  background:linear-gradient(135deg,var(--gold),var(--gold-lt));
+  color:var(--bg-deep);
+  padding:0.52rem 1.4rem;
+  border-radius:var(--r-full);
+  font-weight:500;
+  transition:transform var(--fast),box-shadow var(--fast);
+  white-space:nowrap;
+}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 8px 24px var(--gold-glow)}
+
+.ham{
+  display:none;flex-direction:column;gap:5px;
+  padding:0.4rem;z-index:901;
+}
+.ham span{
+  display:block;width:24px;height:1.5px;
+  background:var(--cream);border-radius:2px;
+  transition:all 0.35s var(--ease);
+}
+.ham.o span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.ham.o span:nth-child(2){opacity:0;transform:scaleX(0)}
+.ham.o span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+
+.mob-menu{
+  position:fixed;inset:0;z-index:899;
+  background:rgba(6,8,15,0.97);
+  backdrop-filter:blur(30px);
+  -webkit-backdrop-filter:blur(30px);
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  gap:clamp(1rem,4vw,1.8rem);
+  transform:translateX(100%);
+  transition:transform 0.44s var(--ease);
+}
+.mob-menu.o{transform:translateX(0)}
+.mob-menu a{
+  font-family:var(--fd);
+  font-size:clamp(1.5rem,7vw,2.5rem);
+  color:var(--stone);
+  transition:color var(--fast);
+}
+.mob-menu a:hover,.mob-menu a:active{color:var(--gold)}
+.mob-cta{
+  font-family:var(--fm);
+  font-size:0.72rem;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  background:linear-gradient(135deg,var(--gold),var(--gold-lt));
+  color:var(--bg-deep);
+  padding:0.8rem 2.4rem;
+  border-radius:var(--r-full);
+  margin-top:0.5rem;
+}
+.mob-foot{
+  position:absolute;bottom:2rem;
+  font-family:var(--fm);
+  font-size:0.58rem;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:var(--stone);
+  opacity:0.45;
+}
+@media(max-width:820px){.nav-links,.nav-cta{display:none}.ham{display:flex}}
+
+/* ================================================================
+   BULLETIN TICKER
+   ================================================================ */
+.bulletin{
+  position:fixed;
+  top:var(--nav-h);
+  inset-inline:0;
+  z-index:800;
+  height:var(--tick-h);
+  background:#09080A;
+  border-bottom:1px solid rgba(200,146,42,0.2);
+  display:flex;align-items:center;
+  overflow:hidden;
+}
+.bull-badge{
+  flex-shrink:0;
+  font-family:var(--fm);
+  font-size:0.56rem;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  background:var(--gold);
+  color:var(--bg-deep);
+  height:100%;
+  padding:0 1rem;
+  display:flex;align-items:center;
+  white-space:nowrap;
+  position:relative;
+}
+.bull-badge::after{
+  content:'';
+  position:absolute;
+  right:-10px;top:0;
+  width:0;height:0;
+  border-top:18px solid transparent;
+  border-bottom:18px solid transparent;
+  border-left:10px solid var(--gold);
+}
+.bull-track{
+  display:flex;align-items:center;
+  white-space:nowrap;
+  animation:tick 60s linear infinite;
+  padding-left:2rem;
+  cursor:default;
+}
+.bull-track:hover{animation-play-state:paused}
+.bull-item{
+  display:inline-flex;align-items:center;gap:0.6rem;
+  font-family:var(--fm);
+  font-size:0.6rem;
+  letter-spacing:0.07em;
+  color:var(--stone);
+  padding-right:4rem;
+}
+.bull-item::before{content:'◆';color:var(--gold);font-size:0.42rem}
+.bull-item strong{color:var(--gold-lt);font-weight:500}
+@keyframes tick{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ================================================================
+   HERO
+   ================================================================ */
+#hero{
+  position:relative;
+  min-height:100svh;
+  display:flex;align-items:center;justify-content:center;
+  padding:calc(var(--nav-h) + var(--tick-h) + 2rem) clamp(1rem,5vw,3rem) clamp(3rem,6vw,5rem);
+  overflow:hidden;
+  text-align:center;
+}
+.hero-glow{
+  position:absolute;inset:0;z-index:0;
+  background:
+    radial-gradient(ellipse 70% 60% at 50% -10%,rgba(200,146,42,0.09),transparent 70%),
+    radial-gradient(ellipse 50% 50% at 80% 80%,rgba(139,26,26,0.05),transparent 60%);
+}
+.hero-mtn{
+  position:absolute;bottom:0;left:0;right:0;z-index:1;pointer-events:none;
+  overflow:hidden;
+}
+.hero-mtn svg{display:block;width:100%;height:auto}
+
+/* Particles */
+#particles{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+.pt{
+  position:absolute;
+  width:2px;height:2px;
+  border-radius:50%;
+  background:var(--gold);
+  opacity:0;
+  animation:floatUp linear infinite;
+}
+@keyframes floatUp{
+  0%{transform:translateY(100vh) scale(0);opacity:0}
+  8%{opacity:0.7}
+  90%{opacity:0.15}
+  100%{transform:translateY(-5vh) scale(1.5);opacity:0}
+}
+
+.hero-body{position:relative;z-index:3;max-width:880px;margin-inline:auto}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  font-family:var(--fm);
+  font-size:0.6rem;
+  letter-spacing:0.22em;
+  text-transform:uppercase;
+  color:var(--gold);
+  border:1px solid var(--border-g);
+  background:var(--gold-pal);
+  padding:0.38rem 1.1rem;
+  border-radius:var(--r-full);
+  margin-bottom:clamp(1.2rem,3vw,2rem);
+}
+.badge-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--gold);
+  animation:gemPulse 2s infinite;
+}
+.hero-title{
+  font-family:var(--fd);
+  font-size:clamp(2rem,8.5vw,6rem);
+  font-weight:900;
+  line-height:0.95;
+  letter-spacing:-0.02em;
+  margin-bottom:1rem;
+  color:var(--cream);
+}
+.hero-title .shimmer{
+  display:block;
+  background:linear-gradient(135deg,var(--gold) 0%,var(--gold-lt) 40%,#FFD580 60%,var(--gold) 100%);
+  background-size:200% auto;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  animation:shimmer 4s ease-in-out infinite;
+  filter:drop-shadow(0 0 40px rgba(200,146,42,0.3));
+}
+@keyframes shimmer{0%,100%{background-position:0%}50%{background-position:100%}}
+.hero-sub{
+  font-family:var(--fs);
+  font-style:italic;
+  font-size:clamp(1.05rem,2.5vw,1.5rem);
+  color:var(--mist);
+  font-weight:300;
+  margin-bottom:1rem;
+}
+.hero-desc{
+  font-size:clamp(0.88rem,1.4vw,1.02rem);
+  color:var(--stone);
+  max-width:520px;
+  margin-inline:auto;
+  margin-bottom:clamp(2rem,4vw,3rem);
+  line-height:1.95;
+}
+.hero-ctas{
+  display:flex;flex-wrap:wrap;gap:0.9rem;
+  justify-content:center;align-items:center;
+}
+.btn-g{
+  font-family:var(--fm);
+  font-size:0.68rem;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  background:linear-gradient(135deg,var(--gold),var(--gold-lt));
+  color:var(--bg-deep);
+  padding:0.85rem clamp(1.5rem,3vw,2.2rem);
+  border-radius:var(--r-full);
+  transition:transform var(--fast),box-shadow var(--fast);
+  display:inline-block;
+  font-weight:500;
+}
+.btn-g:hover{transform:translateY(-3px);box-shadow:0 12px 32px var(--gold-glow)}
+.btn-o{
+  font-family:var(--fm);
+  font-size:0.68rem;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  color:var(--gold);
+  border:1px solid var(--border-g);
+  background:var(--gold-pal);
+  padding:0.85rem clamp(1.5rem,3vw,2.2rem);
+  border-radius:var(--r-full);
+  transition:all var(--fast);
+  display:inline-block;
+}
+.btn-o:hover{border-color:var(--gold);color:var(--cream);background:rgba(200,146,42,0.22)}
+
+/* Hero stats */
+.hero-stats{
+  display:flex;flex-wrap:wrap;
+  margin-top:clamp(3rem,6vw,5rem);
+  border-radius:var(--r);
+  overflow:hidden;
+  gap:1px;
+  background:var(--border);
+}
+.h-stat{
+  flex:1;min-width:130px;
+  background:rgba(11,14,26,0.85);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  padding:1.2rem;
+  text-align:center;
+  transition:background var(--fast);
+}
+.h-stat:hover{background:rgba(20,24,45,0.95)}
+.h-stat-n{
+  font-family:var(--fd);
+  font-size:clamp(1.4rem,3.5vw,1.9rem);
+  font-weight:700;
+  background:linear-gradient(135deg,var(--gold),var(--gold-lt));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  display:block;
+}
+.h-stat-l{
+  font-family:var(--fm);
+  font-size:0.56rem;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--stone);
+  margin-top:0.3rem;
+}
+
+/* Scroll hint */
+.hero-scroll{
+  position:absolute;bottom:1.8rem;left:50%;
+  transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:0.5rem;
+  z-index:3;
+}
+.hero-scroll span{
+  font-family:var(--fm);
+  font-size:0.52rem;
+  letter-spacing:0.22em;
+  text-transform:uppercase;
+  color:var(--stone);
+  opacity:0.55;
+}
+.scroll-line{
+  width:1px;height:44px;
+  background:linear-gradient(to bottom,var(--gold),transparent);
+  animation:scrollFade 2s ease-in-out infinite;
+}
+@keyframes scrollFade{0%,100%{opacity:.4}50%{opacity:1}}
+
+/* ================================================================
+   ABOUT
+   ================================================================ */
+#about{background:var(--bg-main)}
+.about-grid{
+  display:grid;
+  grid-template-columns:1.15fr 1fr;
+  gap:clamp(2.5rem,6vw,5rem);
+  align-items:start;
+}
+@media(max-width:768px){.about-grid{grid-template-columns:1fr}}
+.about-card{
+  background:var(--bg-card);
+  border:1px solid var(--border);
+  border-radius:var(--r);
+  padding:clamp(1.5rem,4vw,2.5rem);
+  position:relative;
+  overflow:hidden;
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+}
+.about-card::before{
+  content:'';
+  position:absolute;top:0;left:0;right:0;
+  height:2px;
+  background:linear-gradient(90deg,var(--gold),var(--gold-lt),transparent);
+}
+.about-p{
+  color:rgba(245,240,232,0.62);
+  font-size:clamp(0.88rem,1.2vw,1rem);
+  line-height:2;
+  margin-bottom:1rem;
+}
+.about-p:last-of-type{margin-bottom:0}
+.about-p strong{color:var(--cream);font-weight:600}
+.about-quote{
+  font-family:var(--fs);
+  font-style:italic;
+  font-size:clamp(1.05rem,2vw,1.3rem);
+  color:var(--gold-lt);
+  border-left:2px solid var(--gold);
+  padding-left:1.2rem;
+  margin:1.5rem 0;
+  line-height:1.7;
+}
+.about-chips{
+  display:flex;flex-wrap:wrap;gap:0.45rem;
+  margin-top:1.5rem;
+}
+.chip{
+  font-family:var(--fm);
+  font-size:0.6rem;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:var(--gold);
+  border:1px solid var(--border-g);
+  padding:0.26rem 0.8rem;
+  border-radius:var(--r-full);
+  background:var(--gold-pal);
+  transition:background var(--fast);
+}
+.chip:hover{background:rgba(200,146,42,0.25)}
+
+.info-stack{display:flex;flex-direction:column;gap:0.75rem}
+.info-tile{
+  display:flex;align-items:center;gap:0.9rem;
+  background:var(--bg-card);
+  border:1px solid var(--border);
+  border-radius:var(--r-sm);
+  padding:1rem 1.2rem;
+  transition:all var(--fast);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+}
+.info-tile:hover{border-color:var(--border-g);transform:translateX(4px);background:var(--bg-card-h)}
+.tile-ic{
+  width:38px;height:38px;
+  border-radius:10px;
+  background:var(--gold-pal);
+  border:1px solid var(--border-g);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.15rem;
+  flex-shrink:0;
+}
+.tile-lbl{font-family:var(--fm);font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--stone)}
+.tile-val{font-weight:600;font-size:0.88rem;color:var(--cream);margin-top:0.15rem}
+
+/* ================================================================
+   HERITAGE TIMELINE
+   ================================================================ */
+#heritage{background:linear-gradient(to bottom,var(--bg-raised),var(--bg-main))}
+.her-intro{max-width:620px;margin-bottom:clamp(3rem,6vw,5rem)}
+.her-intro p{
+  color:rgba(245,240,232,0.58);
+  font-size:clamp(0.88rem,1.2vw,1rem);
+  line-height:2;
+}
+.tl{position:relative;padding-top:.5rem}
+.tl::before{
+  content:'';
+  position:absolute;left:14px;top:28px;bottom:0;
+  width:1px;
+  background:linear-gradient(to bottom,var(--gold),rgba(200,146,42,0.08));
+}
+.tl-it{
+  display:flex;gap:clamp(1rem,3vw,2rem);
+  padding-bottom:clamp(2.2rem,5vw,3.5rem);
+  opacity:0;
+  transform:translateY(20px);
+  transition:opacity 0.6s var(--ease),transform 0.6s var(--ease);
+}
+.tl-it:last-child{padding-bottom:0}
+.tl-it.in{opacity:1;transform:translateY(0)}
+.tl-dc{width:28px;flex-shrink:0;display:flex;justify-content:center;padding-top:5px}
+.tl-dot{
+  width:14px;height:14px;border-radius:50%;
+  border:2px solid var(--border);
+  background:var(--bg-main);
+  position:relative;z-index:1;
+  box-shadow:0 0 0 3px var(--bg-raised);
+  flex-shrink:0;
+  transition:all .4s;
+}
+.tl-it.in .tl-dot{
+  border-color:var(--gold);
+  background:var(--gold);
+  box-shadow:0 0 0 4px var(--bg-raised),0 0 16px var(--gold-glow);
+}
+.tl-bd{flex:1;min-width:0}
+.tl-yr{
+  font-family:var(--fm);
+  font-size:0.6rem;
+  letter-spacing:0.15em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:.3rem;
+}
+.tl-t{
+  font-family:var(--fc);
+  font-size:clamp(0.88rem,1.8vw,1.05rem);
+  font-weight:700;
+  color:var(--cream);
+  margin-bottom:.2rem;
+}
+.tl-d{
+  color:rgba(245,240,232,0.5);
+  font-size:clamp(0.8rem,1vw,0.9rem);
+  line-height:1.85;
+}
+
+/* ================================================================
+   PRAYER FLAGS DIVIDER
+   ================================================================ */
+.pf-wrap{
+  display:flex;justify-content:center;align-items:flex-start;
+  gap:0;
+  padding:2.5rem 0 1.5rem;
+  position:relative;
+  overflow:hidden;
+}
+.pf-line{
+  position:absolute;top:0.35rem;left:5%;right:5%;
+  height:1px;
+  background:rgba(155,149,128,0.18);
+}
+.pf{
+  width:28px;height:36px;
+  clip-path:polygon(0 0,100% 0,50% 100%);
+  animation:swing 3.5s ease-in-out infinite;
+  transform-origin:top center;
+  flex-shrink:0;
+}
+.pf:nth-child(odd){animation-timing-function:ease-in-out}
+.pf:nth-child(1){background:rgba(59,130,246,.65);animation-delay:0s}
+.pf:nth-child(2){background:rgba(245,240,232,.55);animation-delay:.18s}
+.pf:nth-child(3){background:rgba(220,38,38,.65);animation-delay:.36s}
+.pf:nth-child(4){background:rgba(34,197,94,.65);animation-delay:.54s}
+.pf:nth-child(5){background:rgba(234,179,8,.7);animation-delay:.72s}
+.pf:nth-child(6){background:rgba(59,130,246,.65);animation-delay:.9s}
+.pf:nth-child(7){background:rgba(245,240,232,.55);animation-delay:1.08s}
+.pf:nth-child(8){background:rgba(220,38,38,.65);animation-delay:1.26s}
+.pf:nth-child(9){background:rgba(34,197,94,.65);animation-delay:1.44s}
+.pf:nth-child(10){background:rgba(234,179,8,.7);animation-delay:1.62s}
+.pf:nth-child(11){background:rgba(59,130,246,.65);animation-delay:1.8s}
+.pf:nth-child(12){background:rgba(245,240,232,.55);animation-delay:1.98s}
+@keyframes swing{0%,100%{transform:rotate(-2.5deg)}50%{transform:rotate(2.5deg)}}
+@media(prefers-reduced-motion:reduce){.pf{animation:none}}
+
+/* ================================================================
+   CULTURE SECTION
+   ================================================================ */
+#culture{background:var(--bg-main)}
+.culture-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:clamp(.8rem,2vw,1.3rem);
+}
+@media(max-width:560px){.culture-grid{grid-template-columns:1fr}}
+.cc{
+  background:var(--bg-card);
+  border:1px solid var(--border);
+  border-radius:var(--r);
+  overflow:hidden;
+  transition:all var(--med) var(--ease);
+  position:relative;
+}
+.cc:hover{
+  border-color:var(--border-g);
+  transform:translateY(-5px);
+  box-shadow:0 24px 56px rgba(0,0,0,.5),0 0 0 1px var(--border-g);
+}
+.cc-top{
+  height:clamp(150px,22vw,220px);
+  display:flex;align-items:center;justify-content:center;
+  font-size:4rem;
+  position:relative;
+  overflow:hidden;
+}
+.cc:nth-child(1) .cc-top{background:linear-gradient(135deg,rgba(139,26,26,.35),rgba(200,146,42,.2))}
+.cc:nth-child(2) .cc-top{background:linear-gradient(135deg,rgba(59,130,246,.2),rgba(11,14,26,.4))}
+.cc:nth-child(3) .cc-top{background:linear-gradient(135deg,rgba(34,197,94,.18),rgba(11,14,26,.4))}
+.cc:nth-child(4) .cc-top{background:linear-gradient(135deg,rgba(234,179,8,.22),rgba(11,14,26,.4))}
+.cc-emoji-bg{
+  position:absolute;
+  font-size:7rem;
+  opacity:.07;
+  transform:rotate(-12deg) scale(1.2);
+}
+.cc-emoji{position:relative;z-index:1}
+.cc-body{padding:clamp(1.2rem,3vw,1.8rem)}
+.cc-tag{
+  font-family:var(--fm);
+  font-size:0.57rem;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:.45rem;
+}
+.cc-title{
+  font-family:var(--fd);
+  font-size:clamp(.95rem,2vw,1.2rem);
+  font-weight:700;
+  color:var(--cream);
+  margin-bottom:.65rem;
+}
+.cc-text{
+  color:rgba(245,240,232,.52);
+  font-size:clamp(.8rem,1vw,.9rem);
+  line-height:1.9;
+  margin-bottom:.9rem;
+}
+.cc-tags{display:flex;flex-wrap:wrap;gap:.3rem}
+.cc-t{
+  font-family:var(--fm);
+  font-size:0.57rem;
+  background:var(--bg-raised);
+  border:1px solid var(--border);
+  color:var(--stone);
+  padding:.18rem .52rem;
+  border-radius:4px;
+}
+
+/* ================================================================
+   LANGUAGE SECTION
+   ================================================================ */
+#language{background:linear-gradient(to bottom,var(--bg-raised),var(--bg-main))}
+.lang-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:clamp(2rem,5vw,4rem);
+  align-items:start;
+}
+@media(max-width:680px){.lang-grid{grid-template-columns:1fr}}
+
+.lang-tree{
+  background:var(--bg-card);
+  border:1px solid var(--border);
+  border-radius:var(--r);
+  padding:1.5rem;
+  margin-bottom:1.5rem;
+}
+.lang-tree-title{
+  font-family:var(--fm);
+  font-size:.6rem;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+  color:var(--stone);
+  margin-bottom:1rem;
+}
+.tree-row{
+  display:flex;align-items:center;gap:.6rem;
+  padding:.55rem 0;
+  border-bottom:1px solid var(--border);
+}
+.tree-row:last-child{border-bottom:none}
+.tree-dot{
+  width:8px;height:8px;border-radius:50%;
+  background:var(--gold);flex-shrink:0;
+}
+.tree-nm{
+  font-family:var(--fm);
+  font-size:.7rem;
+  color:var(--cream);
+  letter-spacing:.04em;
+}
+.tree-arr{color:var(--stone);font-size:.65rem;margin:0 .2rem}
+
+.script-deco{
+  font-family:var(--fs);
+  font-style:italic;
+  font-size:clamp(2.5rem,7vw,4.5rem);
+  color:var(--gold);
+  opacity:.2;
+  text-align:center;
+  line-height:1.2;
+  margin-bottom:1rem;
+  user-select:none;
+}
+
+.phrase-table{
+  width:100%;
+  border-collapse:collapse;
+  background:var(--bg-card);
+  border:1px solid var(--border);
+  border-radius:var(--r);
+  overflow:hidden;
+}
+.phrase-table th{
+  font-family:var(--fm);
+  font-size:.58rem;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--stone);
+  background:var(--bg-raised);
+  padding:.8rem 1rem;
+  text-align:left;
+  border-bottom:1px solid var(--border);
+}
+.phrase-table td{
+  padding:.78rem 1rem;
+  border-bottom:1px solid var(--border);
+  vertical-align:middle;
+  line-height:1.4;
+}
+.phrase-table tr:last-child td{border-bottom:none}
+.phrase-table tr:hover td{background:var(--gold-pal)}
+.pt-sh{
+  font-family:var(--fs);
+  font-style:italic;
+  color:var(--gold-lt);
+  font-size:1rem;
+}
+.pt-rm{
+  font-family:var(--fm);
+  font-size:.68rem;
+  color:var(--stone);
+}
+.pt-en{color:var(--cream);font-size:.88rem}
+
+/* ================================================================
+   FESTIVALS
+   ================================================================ */
+#festivals{background:var(--bg-main)}
+.fest-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:clamp(.8rem,2vw,1.3rem);
+}
+@media(max-width:780px){.fest-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.fest-grid{grid-template-columns:1fr}}
+.fc{
+  background:var(--bg-card);
+  border:1px solid var(--border);
+  border-radius:var(--r);
+  padding:clamp(1.2rem,3vw,1.7rem);
+  transition:all var(--med) var(--ease);
+  position:relative;
+  overflow:hidden;
+}
+.fc::after{
+  content:'';
+  position:absolute;bottom:0;left:0;
+  width:0;height:2px;
+  background:linear-gradient(90deg,var(--gold),var(--gold-lt));
+  transition:width var(--med) var(--ease);
+}
+.fc:hover{border-color:var(--border-g);transform:translateY(-4px);box-shadow:0 20px 48px rgba(0,0,0,.4)}
+.fc:hover::after{width:100%}
+.fc-emoji{font-size:1.9rem;margin-bottom:.75rem}
+.fc-mo{
+  font-family:var(--fm);
+  font-size:.57rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:.4rem;
+}
+.fc-name{
+  font-family:var(--fd);
+  font-size:clamp(.88rem,1.6vw,1rem);
+  font-weight:700;
+  color:var(--cream);
+  margin-bottom:.55rem;
+}
+.fc-desc{
+  color:rgba(245,240,232,.5);
+  font-size:clamp(.78rem,.95vw,.87rem);
+  line-height:1.85;
+}
+
+/* ================================================================
+   LEADERSHIP
+   ================================================================ */
+#leadership{background:var(--bg-raised)}
+.lead-top{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:clamp(1rem,2.5vw,1.5rem);
+  margin-bottom:clamp(1.2rem,2.5vw,1.5rem);
+}
+@media(max-width:720px){.lead-top{grid-template-columns:1fr;max-width:340px;margin-inline:auto}}
+.lead-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:clamp(.8rem,2vw,1.2rem);
+}
+@media(max-width:880px){.lead-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:420px){.lead-grid{grid-template-columns:repeat(2,1fr)}}
+.lcard{
+  background:var(--bg-card);
+  border:1px solid var(--border);
+  border-radius:var(--r);
+  padding:clamp(1.2rem,3vw,1.8rem);
+  text-align:center;
+  transition:all var(--med) var(--ease);
+  position:relative;
+  overflow:hidden;
+}
+.lcard::before{
+  content:'';
+  position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  transform:scaleX(0);
+  transition:transform var(--med) var(--ease);
+}
+.lcard:hover{border-color:var(--border-g);transform:translateY(-5px);box-shadow:0 24px 56px rgba(0,0,0,.4)}
+.lcard:hover::before{transform:scaleX(1)}
+.lav{
+  width:clamp(64px,14vw,90px);
+  height:clamp(64px,14vw,90px);
+  border-radius:50%;
+  margin-inline:auto;
+  margin-bottom:.9rem;
+  background:linear-gradient(135deg,var(--gold-pal),rgba(139,26,26,.15));
+  border:2px solid var(--border-g);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--fd);
+  font-size:clamp(1.1rem,2.5vw,1.4rem);
+  font-weight:700;
+  color:var(--gold);
+  transition:all var(--med);
+}
+.lcard:hover .lav{border-color:var(--gold);box-shadow:0 0 24px var(--gold-glow)}
+.lcard.feat .lav{
+  width:clamp(80px,16vw,110px);
+  height:clamp(80px,16vw,110px);
+  font-size:clamp(1.3rem,3vw,1.7rem);
+}
+.l-name{
+  font-family:var(--fd);
+  font-size:clamp(.75rem,1.5vw,.9rem);
+  font-weight:700;
+  color:var(--cream);
+  margin-bottom:.25rem;
+}
+.lcard.feat .l-name{font-size:clamp(.88rem,1.8vw,1.05rem)}
+.l-pos{
+  font-family:var(--fm);
+  font-size:.58rem;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:.3rem;
+}
+.l-loc{
+  font-family:var(--fm);
+  font-size:.56rem;
+  letter-spacing:.06em;
+  color:var(--stone);
+}
+.l-bio{
+  font-size:.78rem;
+  color:rgba(245,240,232,.48);
+  line-height:1.7;
+  margin-top:.5rem;
+}
+
+/* ================================================================
+   EVENTS
+   ================================================================ */
+#events{background:var(--bg-main)}
+.ev-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:clamp(1rem,2.5vw,1.5rem);
+}
+@media(max-width:880px){.ev-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:540px){.ev-grid{grid-template-columns:1fr}}
+.ev{
+  background:var(--bg-card);
+  border:1px solid var(--border);
+  border-radius:var(--r);
+  padding:clamp(1.3rem,3vw,1.9rem);
+  display:flex;flex-direction:column;gap:.75rem;
+  transition:all var(--med) var(--ease);
+}
+.ev:hover{border-color:var(--border-g);transform:translateY(-5px);box-shadow:0 24px 56px rgba(0,0,0,.4)}
+.ev-date{
+  display:inline-flex;align-items:center;gap:.45rem;
+  font-family:var(--fm);
+  font-size:.6rem;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--gold);
+  background:var(--gold-pal);
+  border:1px solid var(--border-g);
+  padding:.28rem .85rem;
+  border-radius:var(--r-full);
+  width:fit-content;
+}
+.ev-cat{
+  font-family:var(--fm);
+  font-size:.57rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--stone);
+}
+.ev-t{
+  font-family:var(--fd);
+  font-size:clamp(.92rem,1.8vw,1.1rem);
+  font-weight:700;
+  color:var(--cream);
+  line-height:1.3;
+}
+.ev-loc{
+  font-family:var(--fm);
+  font-size:.6rem;
+  color:var(--stone);
+  display:flex;align-items:center;gap:.38rem;
+}
+.ev-d{
+  color:rgba(245,240,232,.5);
+  font-size:clamp(.8rem,1vw,.87rem);
+  line-height:1.8;
+  flex:1;
+}
+.ev-btn{
+  display:block;width:100%;
+  font-family:var(--fm);
+  font-size:.63rem;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--gold);
+  border:1px solid var(--border-g);
+  padding:.7rem;
+  border-radius:var(--r-sm);
+  text-align:center;
+  transition:all var(--fast);
+}
+.ev-btn:hover{background:var(--gold);color:var(--bg-deep);border-color:var(--gold)}
+
+/* ================================================================
+   DONATION
+   ================================================================ */
+#donate{
+  background:linear-gradient(to bottom,var(--bg-raised),var(--bg-deep));
+  position:relative;overflow:hidden;
+}
+.don-mtn{
+  position:absolute;bottom:0;left:0;right:0;
+  opacity:.04;pointer-events:none;
+}
+.don-wrap{position:relative;z-index:2}
+.don-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:clamp(2.5rem,6vw,5rem);
+  align-items:start;
+}
+@media(max-width:720px){.don-grid{grid-template-columns:1fr}}
+.don-h{
+  font-family:var(--fd);
+  font-size:clamp(1.7rem,4.5vw,2.9rem);
+  font-weight:700;
+  line-height:1.1;
+  margin-bottom:1rem;
+}
+.don-sub{
+  color:rgba(245,240,232,.55);
+  font-size:clamp(.87rem,1.2vw,1rem);
+  line-height:1.95;
+  margin-bottom:1.5rem;
+}
+.causes{display:flex;flex-direction:column;gap:.65rem;margin-bottom:1.2rem}
+.cause{
+  display:flex;align-items:center;gap:.85rem;
+  background:var(--bg-card);
+  border:1px solid var(--border);
+  border-radius:var(--r-sm);
+  padding:.9rem 1.1rem;
+  transition:all var(--fast);
+}
+.cause:hover{border-color:var(--border-g)}
+.cause-ic{font-size:1.15rem;flex-shrink:0}
+.cause-nm{font-weight:600;font-size:.88rem;color:var(--cream)}
+.cause-nt{font-size:.76rem;color:var(--stone)}
+
+.prog-block{margin-bottom:1.8rem}
+.prog-head{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:.55rem;
+}
+.prog-lbl{
+  font-family:var(--fm);
+  font-size:.58rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--stone);
+}
+.prog-pct{font-family:var(--fm);font-size:.68rem;color:var(--gold)}
+.prog-bar{
+  height:4px;
+  background:var(--border);
+  border-radius:var(--r-full);
+  overflow:hidden;
+}
+.prog-fill{
+  height:100%;
+  border-radius:var(--r-full);
+  background:linear-gradient(90deg,var(--gold),var(--gold-lt));
+  width:0%;
+  transition:width 1.6s var(--ease);
+}
+
+.amt-btns{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:.55rem;
+  margin-bottom:.9rem;
+}
+.amt{
+  font-family:var(--fm);
+  font-size:.68rem;
+  letter-spacing:.06em;
+  border:1px solid var(--border);
+  background:var(--bg-card);
+  color:var(--stone);
+  padding:.72rem;
+  border-radius:var(--r-sm);
+  text-align:center;
+  transition:all var(--fast);
+  cursor:pointer;
+}
+.amt:hover,.amt.on{border-color:var(--gold);color:var(--gold);background:var(--gold-pal)}
+
+.d-inp{
+  width:100%;
+  background:var(--bg-card);
+  border:1px solid var(--border);
+  border-radius:var(--r-sm);
+  color:var(--cream);
+  font-family:var(--fm);
+  font-size:.83rem;
+  padding:.9rem 1.1rem;
+  margin-bottom:.75rem;
+  outline:none;
+  transition:border-color var(--fast);
+  -webkit-appearance:none;
+}
+.d-inp::placeholder{color:var(--stone)}
+.d-inp:focus{border-color:var(--border-g)}
+
+.d-submit{
+  width:100%;
+  font-family:var(--fm);
+  font-size:.72rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  background:linear-gradient(135deg,var(--gold),var(--gold-lt));
+  color:var(--bg-deep);
+  padding:1rem;
+  border-radius:var(--r-sm);
+  font-weight:500;
+  transition:transform var(--fast),box-shadow var(--fast);
+}
+.d-submit:hover{transform:translateY(-2px);box-shadow:0 10px 28px var(--gold-glow)}
+
+.d-trust{
+  display:flex;align-items:center;gap:.6rem;
+  justify-content:center;
+  margin-top:.7rem;
+  font-family:var(--fm);
+  font-size:.56rem;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--stone);
+}
+.td{width:5px;height:5px;border-radius:50%;background:#22c55e;animation:gemPulse 2s infinite;flex-shrink:0}
+
+/* ================================================================
+   FOOTER
+   ================================================================ */
+footer{
+  background:var(--bg-deep);
+  border-top:1px solid var(--border);
+  padding:clamp(3rem,7vw,5rem) 0 0;
+}
+.ft-grid{
+  display:grid;
+  grid-template-columns:1.5fr 1fr 1fr 1fr;
+  gap:clamp(2rem,5vw,3.5rem);
+  margin-bottom:clamp(2.5rem,5vw,4rem);
+}
+@media(max-width:880px){.ft-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:500px){.ft-grid{grid-template-columns:1fr}}
+.ft-logo{
+  font-family:var(--fc);
+  font-size:.98rem;
+  font-weight:700;
+  color:var(--gold);
+  margin-bottom:.8rem;
+}
+.ft-tag{
+  font-style:italic;
+  font-size:.85rem;
+  color:var(--stone);
+  line-height:1.7;
+  margin-bottom:1.2rem;
+}
+.ft-soc{display:flex;gap:.55rem}
+.soc{
+  width:36px;height:36px;
+  border-radius:var(--r-sm);
+  background:var(--bg-card);
+  border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--stone);
+  font-size:.82rem;
+  transition:all var(--fast);
+}
+.soc:hover{border-color:var(--border-g);color:var(--gold);background:var(--gold-pal)}
+.ft-col-h{
+  font-family:var(--fm);
+  font-size:.58rem;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:1.1rem;
+}
+.ft-ul{display:flex;flex-direction:column;gap:.6rem}
+.ft-ul a{
+  font-size:.83rem;
+  color:var(--stone);
+  transition:color var(--fast);
+  display:flex;align-items:center;gap:.4rem;
+}
+.ft-ul a::before{content:'›';color:var(--gold);font-size:.78rem}
+.ft-ul a:hover{color:var(--cream)}
+.ft-bot{
+  border-top:1px solid var(--border);
+  padding:1.4rem 0;
+  display:flex;flex-wrap:wrap;
+  justify-content:space-between;align-items:center;
+  gap:.7rem;
+}
+.ft-copy{
+  font-family:var(--fm);
+  font-size:.56rem;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--stone);
+  opacity:.55;
+}
+
+/* ================================================================
+   FLOATING UI ELEMENTS
+   ================================================================ */
+#totop{
+  position:fixed;bottom:2rem;right:2rem;z-index:700;
+  width:44px;height:44px;
+  border-radius:50%;
+  background:linear-gradient(135deg,var(--gold),var(--gold-lt));
+  color:var(--bg-deep);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.15rem;
+  opacity:0;
+  transform:scale(0.7) translateY(8px);
+  transition:opacity var(--fast),transform var(--fast);
+  box-shadow:0 6px 20px var(--gold-glow);
+  border:none;
+}
+#totop.show{opacity:1;transform:scale(1) translateY(0)}
+#totop:hover{transform:scale(1.08) translateY(0)}
+
+#chip{
+  position:fixed;bottom:2rem;left:2rem;z-index:700;
+  background:rgba(11,14,26,.92);
+  border:1px solid var(--border-g);
+  border-radius:var(--r-full);
+  padding:.42rem 1rem;
+  display:flex;align-items:center;gap:.5rem;
+  font-family:var(--fm);
+  font-size:.6rem;
+  letter-spacing:.07em;
+  color:var(--stone);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+}
+.chip-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:#22c55e;
+  animation:gemPulse 2s infinite;
+  flex-shrink:0;
+}
+
+/* ================================================================
+   ACCESSIBILITY & PERFORMANCE
+   ================================================================ */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms !important;
+    transition-duration:.01ms !important;
+  }
+}
+.skip-link{
+  position:absolute;top:-40px;left:0;
+  background:var(--gold);color:var(--bg-deep);
+  padding:.5rem 1rem;
+  font-family:var(--fm);
+  font-size:.7rem;
+  letter-spacing:.1em;
+  z-index:9999;
+  transition:top var(--fast);
+}
+.skip-link:focus{top:0}
+
+</style>
+</head>
+
+<body class="topo">
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<!-- ================================================================
+     NAVIGATION
+     ================================================================ -->
+<nav id="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-logo">
+    <div class="logo-gem" aria-hidden="true"></div>
+    Sherpa Global Association
+  </div>
+
+  <ul class="nav-links" role="list">
+    <li><a href="#about">About</a></li>
+    <li><a href="#heritage">Heritage</a></li>
+    <li><a href="#culture">Culture</a></li>
+    <li><a href="#language">Language</a></li>
+    <li><a href="#leadership">Leadership</a></li>
+    <li><a href="#events">Events</a></li>
+    <li><a href="#donate">Donate</a></li>
+  </ul>
+
+  <a href="#donate" class="nav-cta">Support Us</a>
+
+  <button class="ham" id="ham" aria-label="Toggle navigation" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mob-menu" id="mob" aria-hidden="true" role="dialog">
+  <a href="#about" aria-label="About">About</a>
+  <a href="#heritage" aria-label="Heritage">Heritage</a>
+  <a href="#culture" aria-label="Culture">Culture</a>
+  <a href="#language" aria-label="Language">Language</a>
+  <a href="#leadership" aria-label="Leadership">Leadership</a>
+  <a href="#events" aria-label="Events">Events</a>
+  <a href="#donate" class="mob-cta" aria-label="Donate">Support Us</a>
+  <p class="mob-foot">Sherpa Global Association · Sikkim, India 🏔</p>
+</div>
+
+<!-- ================================================================
+     BULLETIN TICKER
+     ================================================================ -->
+<div class="bulletin" role="marquee" aria-label="Announcements">
+  <div class="bull-badge">LIVE UPDATES</div>
+  <div class="bull-track" aria-live="polite">
+    <!-- Items duplicated for seamless loop -->
+    <span class="bull-item"><strong>Upcoming:</strong> Annual Sherpa Cultural Summit 2026 — Gangtok, Sikkim · June 14–16</span>
+    <span class="bull-item"><strong>Open:</strong> Sherpa Language Preservation Initiative — Classes Every Saturday</span>
+    <span class="bull-item"><strong>New:</strong> Losar 2027 Celebration Program Registration Now Open</span>
+    <span class="bull-item"><strong>Announced:</strong> Youth Leadership Summit — Lachen, North Sikkim · Aug 2026</span>
+    <span class="bull-item"><strong>Call:</strong> Sherpa Heritage Documentation Drive — Volunteers Needed</span>
+    <span class="bull-item"><strong>Grant:</strong> Sherpa Scholarship Fund Applications Open Until July 31</span>
+    <!-- duplicate -->
+    <span class="bull-item"><strong>Upcoming:</strong> Annual Sherpa Cultural Summit 2026 — Gangtok, Sikkim · June 14–16</span>
+    <span class="bull-item"><strong>Open:</strong> Sherpa Language Preservation Initiative — Classes Every Saturday</span>
+    <span class="bull-item"><strong>New:</strong> Losar 2027 Celebration Program Registration Now Open</span>
+    <span class="bull-item"><strong>Announced:</strong> Youth Leadership Summit — Lachen, North Sikkim · Aug 2026</span>
+    <span class="bull-item"><strong>Call:</strong> Sherpa Heritage Documentation Drive — Volunteers Needed</span>
+    <span class="bull-item"><strong>Grant:</strong> Sherpa Scholarship Fund Applications Open Until July 31</span>
+  </div>
+</div>
+
+<!-- ================================================================
+     MAIN CONTENT
+     ================================================================ -->
+<main id="main">
+
+<!-- ── HERO ─────────────────────────────────────── -->
+<section id="hero" aria-label="Welcome">
+  <div class="hero-glow" aria-hidden="true"></div>
+
+  <!-- Particle system -->
+  <div id="particles" aria-hidden="true"></div>
+
+  <!-- Mountain silhouette -->
+  <div class="hero-mtn" aria-hidden="true">
+    <svg viewBox="0 0 1440 280" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,280 L0,210 L90,175 L180,195 L270,145 L360,168 L450,110 L540,138 L630,88 L720,115 L810,78 L900,102 L990,65 L1080,90 L1170,130 L1260,108 L1350,145 L1440,168 L1440,280 Z" fill="rgba(200,146,42,0.055)"/>
+      <path d="M0,280 L0,230 L120,205 L240,218 L360,185 L450,198 L540,165 L630,178 L720,155 L810,168 L900,148 L990,160 L1080,175 L1170,158 L1260,178 L1380,195 L1440,205 L1440,280 Z" fill="rgba(200,146,42,0.038)"/>
+      <path d="M0,280 L0,258 L200,242 L400,250 L600,238 L800,248 L1000,235 L1200,244 L1440,248 L1440,280 Z" fill="rgba(200,146,42,0.025)"/>
+    </svg>
+  </div>
+
+  <div class="hero-body">
+    <div class="hero-badge rv">
+      <span class="badge-dot" aria-hidden="true"></span>
+      Serving the Sherpa Community of Sikkim
+    </div>
+
+    <h1 class="hero-title rv d1">
+      Sherpa Global
+      <span class="shimmer">Association</span>
+    </h1>
+
+    <p class="hero-sub rv d2">Guardians of Sikkim's Living Heritage</p>
+
+    <p class="hero-desc rv d3">
+      Uniting the Sherpa community of Sikkim — preserving our language, celebrating our culture, 
+      honouring our traditions, and building a stronger future together.
+    </p>
+
+    <div class="hero-ctas rv d4">
+      <a href="#heritage" class="btn-g">Explore Our Heritage</a>
+      <a href="#donate" class="btn-o">Support Our Mission</a>
+    </div>
+
+    <div class="hero-stats rv d5">
+      <div class="h-stat">
+        <span class="h-stat-n" data-target="2800" data-suffix="+">0</span>
+        <span class="h-stat-l">Members</span>
+      </div>
+      <div class="h-stat">
+        <span class="h-stat-n" data-target="12">0</span>
+        <span class="h-stat-l">Districts in Sikkim</span>
+      </div>
+      <div class="h-stat">
+        <span class="h-stat-n" data-target="8">0</span>
+        <span class="h-stat-l">Active Programs</span>
+      </div>
+      <div class="h-stat">
+        <span class="h-stat-n" data-target="500" data-suffix="+">0</span>
+        <span class="h-stat-l">Years of Heritage</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-scroll" aria-hidden="true">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── ABOUT ─────────────────────────────────────── -->
+<section id="about" class="sec" aria-label="About the Sherpa People">
+  <div class="c">
+    <div class="about-grid">
+
+      <div class="rv-l">
+        <div class="stag">about us</div>
+        <h2 class="stitle">Who Are the <em>Sherpas?</em></h2>
+
+        <div class="about-card">
+          <p class="about-p">
+            The <strong>Sherpas</strong> are an ethnic group originally from the <strong>Kham region 
+            of eastern Tibet</strong>, who migrated across the Himalayas and settled in Nepal and 
+            later in Sikkim. The name "Sherpa" derives from the Tibetan words 
+            <strong>Shar</strong> (East) and <strong>Pa</strong> (People) — meaning 
+            "People from the East."
+          </p>
+          <blockquote class="about-quote">
+            "Shar — East. Pa — People.<br/>We are the People of the East."
+          </blockquote>
+          <p class="about-p">
+            In <strong>Sikkim</strong>, the Sherpa community is a proud and integral part of the 
+            state's rich cultural tapestry. Predominantly found in <strong>North Sikkim</strong> 
+            (Lachen, Lachung, Chungthang), <strong>East Sikkim</strong>, and 
+            <strong>West Sikkim</strong> (Yuksom), the Sherpas have maintained their distinct 
+            cultural identity, language, and Buddhist traditions for centuries.
+          </p>
+          <p class="about-p">
+            Followers of <strong>Vajrayana Buddhism</strong>, the Sherpas of Sikkim uphold a 
+            deep spiritual life centred around monasteries (Gonpa), prayer, and community. 
+            Their vibrant festivals, distinctive dress, unique language, and warm hospitality 
+            make them one of Sikkim's most cherished communities.
+          </p>
+
+          <div class="about-chips">
+            <span class="chip">Tibetan Origin</span>
+            <span class="chip">Vajrayana Buddhist</span>
+            <span class="chip">North Sikkim</span>
+            <span class="chip">East Sikkim</span>
+            <span class="chip">West Sikkim</span>
+            <span class="chip">Tibeto-Burman Language</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-stack rv-r">
+        <div class="info-tile">
+          <div class="tile-ic">📍</div>
+          <div>
+            <div class="tile-lbl">Primary Settlements</div>
+            <div class="tile-val">Lachen, Lachung, Chungthang, Yuksom</div>
+          </div>
+        </div>
+        <div class="info-tile">
+          <div class="tile-ic">🙏</div>
+          <div>
+            <div class="tile-lbl">Religion</div>
+            <div class="tile-val">Vajrayana Buddhism (Nyingma & Kagyu)</div>
+          </div>
+        </div>
+        <div class="info-tile">
+          <div class="tile-ic">🗣️</div>
+          <div>
+            <div class="tile-lbl">Language</div>
+            <div class="tile-val">Sherpa Khä — Tibeto-Burman Family</div>
+          </div>
+        </div>
+        <div class="info-tile">
+          <div class="tile-ic">🎭</div>
+          <div>
+            <div class="tile-lbl">Traditional Dress</div>
+            <div class="tile-val">Bakhu (Chuba), Pangden, Pakho Hat</div>
+          </div>
+        </div>
+        <div class="info-tile">
+          <div class="tile-ic">🏛️</div>
+          <div>
+            <div class="tile-lbl">Sacred Spaces</div>
+            <div class="tile-val">Gonpa (Monastery), Mani Walls, Chorten</div>
+          </div>
+        </div>
+        <div class="info-tile">
+          <div class="tile-ic">🌏</div>
+          <div>
+            <div class="tile-lbl">State</div>
+            <div class="tile-val">Sikkim — 22nd State of India</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── HERITAGE TIMELINE ──────────────────────────── -->
+<section id="heritage" class="sec" aria-label="Heritage and History">
+  <div class="c">
+    <div class="rv her-intro">
+      <div class="stag">history & origin</div>
+      <h2 class="stitle">Our <em>Heritage</em></h2>
+      <p>
+        The Sherpa journey is one of remarkable resilience and cultural richness — a people who 
+        carried their traditions, language, and faith across the mighty Himalayas and built a 
+        vibrant community in the green valleys of Sikkim.
+      </p>
+    </div>
+
+    <div class="tl" role="list">
+      <div class="tl-it" role="listitem">
+        <div class="tl-dc"><div class="tl-dot"></div></div>
+        <div class="tl-bd">
+          <div class="tl-yr">~15th Century</div>
+          <div class="tl-t">Ancestral Roots in Kham, Tibet</div>
+          <div class="tl-d">Sherpa ancestors lived in the <em>Kham region</em> of eastern Tibet — a land of 
+          vast plateaus and Buddhist monasteries. The community was part of the broader 
+          Tibetan cultural sphere, practising Buddhism and maintaining rich oral traditions.</div>
+        </div>
+      </div>
+
+      <div class="tl-it" role="listitem">
+        <div class="tl-dc"><div class="tl-dot"></div></div>
+        <div class="tl-bd">
+          <div class="tl-yr">~16th–17th Century</div>
+          <div class="tl-t">Migration to Nepal & Sikkim</div>
+          <div class="tl-d">Sherpa clans migrated westward through the Himalayan passes, settling first 
+          in the Solu-Khumbu valley of Nepal and gradually making their way into the 
+          Kingdom of Sikkim — drawn by fertile valleys and the promise of a new home.</div>
+        </div>
+      </div>
+
+      <div class="tl-it" role="listitem">
+        <div class="tl-dc"><div class="tl-dot"></div></div>
+        <div class="tl-bd">
+          <div class="tl-yr">18th Century</div>
+          <div class="tl-t">Establishment of Gonpa & Community Roots</div>
+          <div class="tl-d">The Sherpas established their first monasteries and sacred spaces in Sikkim. 
+          Community bonds were formed through shared religious practice, festivals, and the 
+          governance of clan elders. Sherpa villages took root in North Sikkim.</div>
+        </div>
+      </div>
+
+      <div class="tl-it" role="listitem">
+        <div class="tl-dc"><div class="tl-dot"></div></div>
+        <div class="tl-bd">
+          <div class="tl-yr">19th Century</div>
+          <div class="tl-t">Growth Across Sikkim's Valleys</div>
+          <div class="tl-d">Sherpa settlements expanded across Lachen, Lachung, Chungthang in North Sikkim 
+          and into West Sikkim near Yuksom. Each village developed its own cultural rhythm, 
+          festivals, and Gonpa as spiritual centres of community life.</div>
+        </div>
+      </div>
+
+      <div class="tl-it" role="listitem">
+        <div class="tl-dc"><div class="tl-dot"></div></div>
+        <div class="tl-bd">
+          <div class="tl-yr">1947 – 1975</div>
+          <div class="tl-t">Indian Independence & Sikkimese Integration</div>
+          <div class="tl-d">With India's independence and Sikkim's eventual merger with India in 1975 as 
+          the 22nd state, the Sherpa community became Indian citizens. They participated 
+          actively in shaping Sikkim's democratic and cultural identity.</div>
+        </div>
+      </div>
+
+      <div class="tl-it" role="listitem">
+        <div class="tl-dc"><div class="tl-dot"></div></div>
+        <div class="tl-bd">
+          <div class="tl-yr">2000s – Present</div>
+          <div class="tl-t">Cultural Renaissance & Global Sherpa Association</div>
+          <div class="tl-d">Recognising the importance of preserving their unique identity, Sherpa leaders 
+          formed cultural organisations. The Sherpa Global Association was established to 
+          connect Sherpa communities across Sikkim and the world, protecting language, 
+          traditions, and heritage for future generations.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Prayer Flags Divider -->
+<div class="pf-wrap" aria-hidden="true">
+  <div class="pf-line"></div>
+  <div class="pf"></div><div class="pf"></div><div class="pf"></div><div class="pf"></div>
+  <div class="pf"></div><div class="pf"></div><div class="pf"></div><div class="pf"></div>
+  <div class="pf"></div><div class="pf"></div><div class="pf"></div><div class="pf"></div>
+</div>
+
+<!-- ── CULTURE ─────────────────────────────────────── -->
+<section id="culture" class="sec" aria-label="Culture and Traditions">
+  <div class="c">
+    <div class="rv">
+      <div class="stag">culture & traditions</div>
+      <h2 class="stitle">Our Living <em>Culture</em></h2>
+    </div>
+
+    <div class="culture-grid">
+
+      <div class="cc rv d1">
+        <div class="cc-top">
+          <span class="cc-emoji-bg" aria-hidden="true">👘</span>
+          <span class="cc-emoji" role="img" aria-label="Traditional dress">👘</span>
+        </div>
+        <div class="cc-body">
+          <div class="cc-tag">Traditional Dress</div>
+          <div class="cc-title">Bakhu & Pangden</div>
+          <div class="cc-text">
+            The <em>Bakhu</em> (or Chuba) is the traditional Sherpa robe worn by both men and women — 
+            a full-length garment of wool or brocade, fastened with a cloth belt. Women wear the 
+            colourful <em>Pangden</em>, a striped apron symbolising marital status and cultural identity. 
+            The <em>Pakho</em> hat completes ceremonial attire. During festivals, elaborate jewellery 
+            of turquoise, coral, and silver adorns the dress.
+          </div>
+          <div class="cc-tags">
+            <span class="cc-t">Bakhu / Chuba</span>
+            <span class="cc-t">Pangden Apron</span>
+            <span class="cc-t">Pakho Hat</span>
+            <span class="cc-t">Turquoise Jewellery</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cc rv d2">
+        <div class="cc-top">
+          <span class="cc-emoji-bg" aria-hidden="true">🛕</span>
+          <span class="cc-emoji" role="img" aria-label="Buddhism">🛕</span>
+        </div>
+        <div class="cc-body">
+          <div class="cc-tag">Spirituality</div>
+          <div class="cc-title">Vajrayana Buddhism</div>
+          <div class="cc-text">
+            Buddhism is the heartbeat of Sherpa life in Sikkim. The community follows the 
+            <em>Nyingma</em> and <em>Kagyu</em> schools of Vajrayana Buddhism. Monasteries (Gonpa) 
+            serve as spiritual, social, and educational centres. <em>Mani walls</em> — stones 
+            inscribed with sacred mantras — line village paths. Prayer flags in five colours 
+            (Blue, White, Red, Green, Yellow) carry blessings on the wind.
+          </div>
+          <div class="cc-tags">
+            <span class="cc-t">Nyingma School</span>
+            <span class="cc-t">Kagyu School</span>
+            <span class="cc-t">Gonpa</span>
+            <span class="cc-t">Mani Walls</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cc rv d3">
+        <div class="cc-top">
+          <span class="cc-emoji-bg" aria-hidden="true">🍲</span>
+          <span class="cc-emoji" role="img" aria-label="Food">🍲</span>
+        </div>
+        <div class="cc-body">
+          <div class="cc-tag">Culinary Heritage</div>
+          <div class="cc-title">Food of the Sherpas</div>
+          <div class="cc-text">
+            Sherpa cuisine reflects the Himalayan landscape — hearty, warming, and deeply 
+            nourishing. <em>Tsampa</em> (roasted barley flour) is the staple. <em>Thukpa</em> 
+            (noodle soup), <em>Tingmo</em> (steamed bread), and <em>Dhindo</em> (buckwheat porridge) 
+            are daily meals. <em>Butter Tea</em> (Bhoe Cha / Po Cha) — made with black tea, 
+            yak butter, and salt — is offered to every guest. <em>Chang</em>, a millet beer, 
+            is shared at celebrations.
+          </div>
+          <div class="cc-tags">
+            <span class="cc-t">Tsampa</span>
+            <span class="cc-t">Thukpa</span>
+            <span class="cc-t">Tingmo</span>
+            <span class="cc-t">Butter Tea</span>
+            <span class="cc-t">Chang</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cc rv d4">
+        <div class="cc-top">
+          <span class="cc-emoji-bg" aria-hidden="true">🎶</span>
+          <span class="cc-emoji" role="img" aria-label="Music and arts">🎶</span>
+        </div>
+        <div class="cc-body">
+          <div class="cc-tag">Music & Arts</div>
+          <div class="cc-title">Sacred Music & Crafts</div>
+          <div class="cc-text">
+            Sherpa cultural life is enriched by sacred music played on traditional instruments — 
+            <em>dungchen</em> (long horns), <em>gyaling</em> (oboe), <em>damaru</em> (drum), and 
+            <em>cymbal</em>. Ritual <em>Cham dances</em> — performed by monks in elaborate 
+            costumes and masks — tell stories of dharma and are the centrepiece of major 
+            festivals. Sherpa artisans craft intricate <em>Thangka paintings</em> and 
+            handwoven textiles with symbolic Buddhist motifs.
+          </div>
+          <div class="cc-tags">
+            <span class="cc-t">Cham Dance</span>
+            <span class="cc-t">Dungchen</span>
+            <span class="cc-t">Thangka Art</span>
+            <span class="cc-t">Handweaving</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── LANGUAGE ─────────────────────────────────────── -->
+<section id="language" class="sec" aria-label="Sherpa Language">
+  <div class="c">
+    <div class="rv">
+      <div class="stag">language</div>
+      <h2 class="stitle">The <em>Sherpa Language</em></h2>
+    </div>
+
+    <div class="lang-grid">
+      <div class="rv-l">
+        <div class="lang-tree" role="list" aria-label="Language family tree">
+          <div class="lang-tree-title">Language Family Tree</div>
+          <div class="tree-row" role="listitem">
+            <div class="tree-dot"></div>
+            <div class="tree-nm">Sino-Tibetan</div>
+            <div class="tree-arr">›</div>
+            <div class="tree-nm" style="color:var(--stone)">Tibeto-Burman</div>
+            <div class="tree-arr">›</div>
+            <div class="tree-nm" style="color:var(--stone)">Tibetic</div>
+            <div class="tree-arr">›</div>
+            <div class="tree-nm" style="color:var(--gold-lt)">Sherpa Khä</div>
+          </div>
+        </div>
+
+        <div class="script-deco" aria-hidden="true">ཤེར་པ་</div>
+
+        <p style="color:rgba(245,240,232,0.58);font-size:clamp(.87rem,1.2vw,.98rem);line-height:2;margin-bottom:1.2rem">
+          <strong style="color:var(--cream)">Sherpa Khä</strong> is a Tibeto-Burman language closely related to Tibetan. 
+          It is the mother tongue of the Sherpa people, carrying centuries of oral wisdom, 
+          folklore, and spiritual knowledge. The Sherpa Global Association actively runs 
+          language classes to ensure this precious tongue is passed to new generations.
+        </p>
+
+        <a href="#donate" class="btn-g" style="display:inline-block">Support Language Preservation</a>
+      </div>
+
+      <div class="rv-r">
+        <table class="phrase-table" aria-label="Common Sherpa phrases">
+          <thead>
+            <tr>
+              <th scope="col">English</th>
+              <th scope="col">Sherpa / Romanized</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="pt-en">Hello / Greetings</td>
+              <td><span class="pt-sh">Tashi Delek</span></td>
+            </tr>
+            <tr>
+              <td class="pt-en">Thank you</td>
+              <td><span class="pt-sh">Thuji Che</span></td>
+            </tr>
+            <tr>
+              <td class="pt-en">How are you?</td>
+              <td><span class="pt-sh">Kherang Depo Yin Pe?</span></td>
+            </tr>
+            <tr>
+              <td class="pt-en">I am well</td>
+              <td><span class="pt-sh">Nga Depo Yin</span></td>
+            </tr>
+            <tr>
+              <td class="pt-en">Good morning</td>
+              <td><span class="pt-sh">Sangja Delek</span></td>
+            </tr>
+            <tr>
+              <td class="pt-en">Good night</td>
+              <td><span class="pt-sh">Nubmo Delek</span></td>
+            </tr>
+            <tr>
+              <td class="pt-en">Water</td>
+              <td><span class="pt-sh">Chu</span></td>
+            </tr>
+            <tr>
+              <td class="pt-en">Food / Meal</td>
+              <td><span class="pt-sh">Khaja</span></td>
+            </tr>
+            <tr>
+              <td class="pt-en">Temple / Monastery</td>
+              <td><span class="pt-sh">Gonpa</span></td>
+            </tr>
+            <tr>
+              <td class="pt-en">Prayer</td>
+              <td><span class="pt-sh">Mönlam</span></td>
+            </tr>
+            <tr>
+              <td class="pt-en">Family</td>
+              <td><span class="pt-sh">Konchok</span></td>
+            </tr>
+            <tr>
+              <td class="pt-en">Beautiful / Good</td>
+              <td><span class="pt-sh">Yak-pa</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Prayer Flags Divider -->
+<div class="pf-wrap" aria-hidden="true">
+  <div class="pf-line"></div>
+  <div class="pf"></div><div class="pf"></div><div class="pf"></div><div class="pf"></div>
+  <div class="pf"></div><div class="pf"></div><div class="pf"></div><div class="pf"></div>
+  <div class="pf"></div><div class="pf"></div><div class="pf"></div><div class="pf"></div>
+</div>
+
+<!-- ── FESTIVALS ─────────────────────────────────────── -->
+<section id="festivals" class="sec" aria-label="Festivals and Celebrations">
+  <div class="c">
+    <div class="rv">
+      <div class="stag">festivals & celebrations</div>
+      <h2 class="stitle">Sacred <em>Festivals</em></h2>
+    </div>
+
+    <div class="fest-grid">
+      <div class="fc rv d1">
+        <div class="fc-emoji" role="img" aria-label="New Year celebration">🎊</div>
+        <div class="fc-mo">February / March</div>
+        <div class="fc-name">Losar — Sherpa New Year</div>
+        <div class="fc-desc">The most important celebration in the Sherpa calendar. Losar marks the 
+        Tibetan-Sherpa New Year with prayer ceremonies at the Gonpa, traditional dances, 
+        feasting on special foods, exchange of gifts, and the painting of doorways with 
+        auspicious symbols. Homes are decorated with prayer flags and juniper incense fills the air.</div>
+      </div>
+
+      <div class="fc rv d2">
+        <div class="fc-emoji" role="img" aria-label="Religious festival">🙏</div>
+        <div class="fc-mo">June / July</div>
+        <div class="fc-name">Dumji — Festival of Merit</div>
+        <div class="fc-desc">A five-day community festival of great cultural significance, centred at the 
+        village Gonpa. Monks perform Cham dances in elaborate masks and costumes. Families 
+        contribute to a communal feast. It is considered a time to accumulate merit and 
+        strengthen community bonds through shared devotion and celebration.</div>
+      </div>
+
+      <div class="fc rv d3">
+        <div class="fc-emoji" role="img" aria-label="Sacred month">🕯️</div>
+        <div class="fc-mo">May / June</div>
+        <div class="fc-name">Saga Dawa — Sacred Month</div>
+        <div class="fc-desc">The holiest month of the Tibetan Buddhist calendar, commemorating the birth, 
+        enlightenment, and parinirvana of Lord Buddha. Sherpas observe vegetarianism, 
+        perform pilgrimages to Gonpa and sacred sites, engage in extensive prayer and 
+        recitation of mantras, and practise acts of generosity and compassion.</div>
+      </div>
+
+      <div class="fc rv d4">
+        <div class="fc-emoji" role="img" aria-label="Monastery festival">🎭</div>
+        <div class="fc-mo">October / November</div>
+        <div class="fc-name">Mani Rimdu</div>
+        <div class="fc-desc">A three-day monastic festival featuring elaborate Cham ritual dances performed 
+        by monks wearing ornate masks representing Buddhist deities and demons. The dances 
+        symbolise the victory of dharma over ignorance. Villagers receive blessings from 
+        senior lamas and participate in sacred fire ceremonies.</div>
+      </div>
+
+      <div class="fc rv d5">
+        <div class="fc-emoji" role="img" aria-label="Dance festival">💃</div>
+        <div class="fc-mo">Varies by Monastery</div>
+        <div class="fc-name">Tsechu — Anniversary Dances</div>
+        <div class="fc-desc">Celebrated on the tenth day of the Tibetan lunar month, Tsechu honours 
+        Guru Rinpoche (Padmasambhava). Monastery courtyards come alive with masked 
+        Cham dances, music from dungchen and cymbals, and the unfurling of massive 
+        sacred Thangka paintings (Thongdrol) believed to liberate those who behold them.</div>
+      </div>
+
+      <div class="fc rv d1">
+        <div class="fc-emoji" role="img" aria-label="Agricultural festival">🌾</div>
+        <div class="fc-mo">Seasonal</div>
+        <div class="fc-name">Naubarse — Harvest Thanks</div>
+        <div class="fc-desc">An agricultural thanksgiving festival where the Sherpa community gathers to 
+        express gratitude for the harvest. Offerings of first fruits, grains, and chang 
+        are made to local deities. Traditional songs (Sherpali folk songs) are sung 
+        around communal fires, celebrating the abundance that the land provides.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── LEADERSHIP ─────────────────────────────────────── -->
+<section id="leadership" class="sec" aria-label="Association Leadership">
+  <div class="c">
+    <div class="rv">
+      <div class="stag">our leadership</div>
+      <h2 class="stitle">Executive <em>Committee</em></h2>
+    </div>
+
+    <!-- Featured leaders -->
+    <div class="lead-top">
+      <article class="lcard feat rv d1" aria-label="President">
+        <div class="lav" aria-hidden="true">AT</div>
+        <div class="l-name">Ang Tashi Sherpa</div>
+        <div class="l-pos">President</div>
+        <div class="l-loc">📍 Gangtok, East Sikkim</div>
+        <div class="l-bio">Dedicated to preserving Sherpa heritage and uniting the community across Sikkim through cultural programs and dialogue.</div>
+      </article>
+      <article class="lcard feat rv d2" aria-label="Vice President">
+        <div class="lav" aria-hidden="true">ML</div>
+        <div class="l-name">Mingma Lhamo Sherpa</div>
+        <div class="l-pos">Vice President</div>
+        <div class="l-loc">📍 Lachen, North Sikkim</div>
+        <div class="l-bio">Champion of women's rights and cultural education, leading initiatives for Sherpa women's empowerment in Sikkim.</div>
+      </article>
+      <article class="lcard feat rv d3" aria-label="General Secretary">
+        <div class="lav" aria-hidden="true">DY</div>
+        <div class="l-name">Dawa Yangzum Sherpa</div>
+        <div class="l-pos">General Secretary</div>
+        <div class="l-loc">📍 Yuksom, West Sikkim</div>
+        <div class="l-bio">Coordinates all association activities, manages community relations, and drives the digital preservation of Sherpa heritage.</div>
+      </article>
+    </div>
+
+    <!-- Committee members -->
+    <div class="lead-grid">
+      <article class="lcard rv d1">
+        <div class="lav" aria-hidden="true">PS</div>
+        <div class="l-name">Pemba Dorjee Sherpa</div>
+        <div class="l-pos">Treasurer</div>
+        <div class="l-loc">📍 Chungthang, N. Sikkim</div>
+      </article>
+      <article class="lcard rv d2">
+        <div class="lav" aria-hidden="true">NG</div>
+        <div class="l-name">Nima Gyalgen Sherpa</div>
+        <div class="l-pos">Cultural Director</div>
+        <div class="l-loc">📍 Lachung, N. Sikkim</div>
+      </article>
+      <article class="lcard rv d3">
+        <div class="lav" aria-hidden="true">KS</div>
+        <div class="l-name">Kami Sherpa</div>
+        <div class="l-pos">Sports Secretary</div>
+        <div class="l-loc">📍 Mangan, N. Sikkim</div>
+      </article>
+      <article class="lcard rv d4">
+        <div class="lav" aria-hidden="true">PL</div>
+        <div class="l-name">Pasang Lhamu Sherpa</div>
+        <div class="l-pos">Women's Wing Chief</div>
+        <div class="l-loc">📍 Gangtok, E. Sikkim</div>
+      </article>
+      <article class="lcard rv d1">
+        <div class="lav" aria-hidden="true">TN</div>
+        <div class="l-name">Tensing Norbu Sherpa</div>
+        <div class="l-pos">Youth President</div>
+        <div class="l-loc">📍 Namchi, S. Sikkim</div>
+      </article>
+      <article class="lcard rv d2">
+        <div class="lav" aria-hidden="true">CD</div>
+        <div class="l-name">Chhewang Dorji Sherpa</div>
+        <div class="l-pos">Education Secretary</div>
+        <div class="l-loc">📍 Singtam, E. Sikkim</div>
+      </article>
+      <article class="lcard rv d3">
+        <div class="lav" aria-hidden="true">SK</div>
+        <div class="l-name">Sonam Khandu Sherpa</div>
+        <div class="l-pos">PR & Media</div>
+        <div class="l-loc">📍 Gyalshing, W. Sikkim</div>
+      </article>
+      <article class="lcard rv d4">
+        <div class="lav" aria-hidden="true">RW</div>
+        <div class="l-name">Rinzing Wangdi Sherpa</div>
+        <div class="l-pos">Religious Affairs</div>
+        <div class="l-loc">📍 Lachen, N. Sikkim</div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- Prayer Flags -->
+<div class="pf-wrap" aria-hidden="true">
+  <div class="pf-line"></div>
+  <div class="pf"></div><div class="pf"></div><div class="pf"></div><div class="pf"></div>
+  <div class="pf"></div><div class="pf"></div><div class="pf"></div><div class="pf"></div>
+  <div class="pf"></div><div class="pf"></div><div class="pf"></div><div class="pf"></div>
+</div>
+
+<!-- ── EVENTS ─────────────────────────────────────── -->
+<section id="events" class="sec" aria-label="Upcoming Events">
+  <div class="c">
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:1.5rem;margin-bottom:clamp(2rem,5vw,3.5rem)">
+      <div class="rv">
+        <div class="stag">upcoming events</div>
+        <h2 class="stitle" style="margin-bottom:0">Events & <em>Gatherings</em></h2>
+      </div>
+      <a href="#" class="rv" style="font-family:var(--fm);font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);border-bottom:1px solid rgba(200,146,42,0.35);padding-bottom:.2rem;transition:border-color var(--fast);white-space:nowrap">View Full Calendar →</a>
+    </div>
+
+    <div class="ev-grid">
+      <article class="ev rv d1">
+        <div class="ev-date">📅 Jun 14–16, 2026</div>
+        <div class="ev-cat">Cultural · Annual</div>
+        <div class="ev-t">Annual Sherpa Cultural Summit</div>
+        <div class="ev-loc">📍 Gangtok, East Sikkim</div>
+        <div class="ev-d">Three days of cultural showcases, community discussions, traditional performances, food exhibitions, and the annual general meeting of the Sherpa Global Association.</div>
+        <a href="#" class="ev-btn">Register Now</a>
+      </article>
+
+      <article class="ev rv d2">
+        <div class="ev-date">📅 Every Saturday</div>
+        <div class="ev-cat">Education · Ongoing</div>
+        <div class="ev-t">Sherpa Language Preservation Classes</div>
+        <div class="ev-loc">📍 Mangan, North Sikkim</div>
+        <div class="ev-d">Weekly language classes for all ages. Learn to speak, read, and write Sherpa Khä. Taught by community elders and certified language teachers. Online access also available.</div>
+        <a href="#" class="ev-btn">Join Class</a>
+      </article>
+
+      <article class="ev rv d3">
+        <div class="ev-date">📅 Aug 10–12, 2026</div>
+        <div class="ev-cat">Youth · Leadership</div>
+        <div class="ev-t">Youth Leadership Summit</div>
+        <div class="ev-loc">📍 Lachen, North Sikkim</div>
+        <div class="ev-d">A residential summit for young Sherpas aged 16–30. Workshops on leadership, culture, entrepreneurship, and community service. Mentorship by senior community leaders.</div>
+        <a href="#" class="ev-btn">Register Now</a>
+      </article>
+
+      <article class="ev rv d1">
+        <div class="ev-date">📅 Sep 20, 2026</div>
+        <div class="ev-cat">Culture · Women</div>
+        <div class="ev-t">Sherpa Women's Cultural Program</div>
+        <div class="ev-loc">📍 Yuksom, West Sikkim</div>
+        <div class="ev-d">A celebration of Sherpa women's contributions to culture and society. Features traditional weaving demonstrations, cooking workshops, folk singing, and a fashion showcase of Bakhu and Pangden.</div>
+        <a href="#" class="ev-btn">Learn More</a>
+      </article>
+
+      <article class="ev rv d2">
+        <div class="ev-date">📅 Oct 18–20, 2026</div>
+        <div class="ev-cat">Religious · Monastic</div>
+        <div class="ev-t">Mani Rimdu Festival 2026</div>
+        <div class="ev-loc">📍 Lachung Gonpa, N. Sikkim</div>
+        <div class="ev-d">Community participation in the sacred Mani Rimdu festival. Three days of Cham dances, monastic prayer ceremonies, blessing from lamas, and communal offering. All community members welcome.</div>
+        <a href="#" class="ev-btn">Learn More</a>
+      </article>
+
+      <article class="ev rv d3">
+        <div class="ev-date">📅 Nov 5 – Dec 5, 2026</div>
+        <div class="ev-cat">Heritage · Preservation</div>
+        <div class="ev-t">Heritage Documentation Drive</div>
+        <div class="ev-loc">📍 All Districts, Sikkim</div>
+        <div class="ev-d">A month-long initiative to document Sherpa oral histories, folk songs, recipes, clan stories, and traditional practices through video, audio, and written archives. Volunteers welcome.</div>
+        <a href="#" class="ev-btn">Volunteer</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── DONATION ─────────────────────────────────────── -->
+<section id="donate" class="sec" aria-label="Support and Donations">
+  <div class="don-mtn" aria-hidden="true">
+    <svg viewBox="0 0 1440 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,200 L0,130 L200,95 L360,110 L480,70 L600,90 L720,55 L840,80 L960,45 L1080,75 L1200,100 L1320,80 L1440,100 L1440,200 Z" fill="var(--gold)"/>
+    </svg>
+  </div>
+
+  <div class="c don-wrap">
+    <div class="rv">
+      <div class="stag">support us</div>
+    </div>
+
+    <div class="don-grid">
+      <div class="rv-l">
+        <h2 class="don-h">Help Us <em>Preserve</em><br/>a Living Legacy</h2>
+        <p class="don-sub">
+          Every contribution to the Sherpa Global Association directly funds the preservation 
+          of our language, culture, and community programs. Help us protect 500 years of 
+          Sherpa heritage for future generations.
+        </p>
+
+        <div class="causes" role="list">
+          <div class="cause" role="listitem">
+            <span class="cause-ic" role="img" aria-label="Language">🗣️</span>
+            <div>
+              <div class="cause-nm">Language Preservation</div>
+              <div class="cause-nt">Funding Sherpa Khä teachers, classes & digital archives</div>
+            </div>
+          </div>
+          <div class="cause" role="listitem">
+            <span class="cause-ic" role="img" aria-label="Education">📚</span>
+            <div>
+              <div class="cause-nm">Sherpa Scholarship Fund</div>
+              <div class="cause-nt">Supporting Sherpa students across Sikkim</div>
+            </div>
+          </div>
+          <div class="cause" role="listitem">
+            <span class="cause-ic" role="img" aria-label="Culture">🎭</span>
+            <div>
+              <div class="cause-nm">Cultural Programs</div>
+              <div class="cause-nt">Festivals, dance troupes & heritage documentation</div>
+            </div>
+          </div>
+          <div class="cause" role="listitem">
+            <span class="cause-ic" role="img" aria-label="Youth">🌱</span>
+            <div>
+              <div class="cause-nm">Youth Development</div>
+              <div class="cause-nt">Leadership camps, mentorship & community service</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rv-r">
+        <div class="prog-block">
+          <div class="prog-head">
+            <span class="prog-lbl">Annual Heritage Fund 2026</span>
+            <span class="prog-pct" id="pct">0% Funded</span>
+          </div>
+          <div class="prog-bar" role="progressbar" aria-valuenow="68" aria-valuemin="0" aria-valuemax="100">
+            <div class="prog-fill" id="pfill" data-target="68"></div>
+          </div>
+          <div style="display:flex;justify-content:space-between;margin-top:.55rem">
+            <span style="font-family:var(--fm);font-size:.58rem;color:var(--stone)">₹4,08,000 raised</span>
+            <span style="font-family:var(--fm);font-size:.58rem;color:var(--stone)">Goal: ₹6,00,000</span>
+          </div>
+        </div>
+
+        <div style="font-family:var(--fm);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);margin-bottom:.65rem">Select Amount</div>
+        <div class="amt-btns" role="group" aria-label="Donation amounts">
+          <button class="amt" data-amt="₹500">₹500</button>
+          <button class="amt" data-amt="₹1000">₹1,000</button>
+          <button class="amt on" data-amt="₹2000">₹2,000</button>
+          <button class="amt" data-amt="₹5000">₹5,000</button>
+          <button class="amt" data-amt="₹10000">₹10,000</button>
+          <button class="amt" data-amt="custom">Custom</button>
+        </div>
+
+        <input
+          class="d-inp"
+          type="text"
+          placeholder="Your name"
+          aria-label="Your name"
+          autocomplete="name"
+        />
+        <input
+          class="d-inp"
+          type="email"
+          placeholder="Email address"
+          aria-label="Email address"
+          autocomplete="email"
+        />
+        <input
+          class="d-inp"
+          type="text"
+          placeholder="Custom amount (e.g. ₹3,500)"
+          aria-label="Custom donation amount"
+          id="customAmt"
+          style="display:none"
+        />
+
+        <button class="d-submit" id="donateBtn">
+          Donate Securely →
+        </button>
+        <div class="d-trust">
+          <div class="td"></div>
+          Secure · 100% goes to community programs · Registered NGO
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ================================================================
+     FOOTER
+     ================================================================ -->
+<footer role="contentinfo">
+  <div class="c">
+    <div class="ft-grid">
+      <div>
+        <div class="ft-logo">Sherpa Global Association</div>
+        <p class="ft-tag">
+          Preserving the living heritage of the Sherpa people of Sikkim — our language, 
+          culture, traditions, and community bonds, for every generation to come.
+        </p>
+        <div class="ft-soc" aria-label="Social media links">
+          <a href="#" class="soc" aria-label="Facebook">f</a>
+          <a href="#" class="soc" aria-label="Instagram">◎</a>
+          <a href="#" class="soc" aria-label="YouTube">▶</a>
+          <a href="#" class="soc" aria-label="WhatsApp">✆</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="ft-col-h">Quick Links</div>
+        <ul class="ft-ul" role="list">
+          <li><a href="#about">About Sherpas</a></li>
+          <li><a href="#heritage">Our Heritage</a></li>
+          <li><a href="#culture">Culture</a></li>
+          <li><a href="#language">Language</a></li>
+          <li><a href="#festivals">Festivals</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="ft-col-h">Association</div>
+        <ul class="ft-ul" role="list">
+          <li><a href="#leadership">Executive Committee</a></li>
+          <li><a href="#events">Events & Programs</a></li>
+          <li><a href="#donate">Donate</a></li>
+          <li><a href="#">Membership</a></li>
+          <li><a href="#">Annual Reports</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="ft-col-h">Contact</div>
+        <ul class="ft-ul" role="list">
+          <li><a href="mailto:info@sherpaglobal.org">info@sherpaglobal.org</a></li>
+          <li><a href="tel:+919800000000">+91 98000 00000</a></li>
+          <li><a href="#">Gangtok, East Sikkim</a></li>
+          <li><a href="#">India — 737101</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="ft-bot">
+      <span class="ft-copy">© 2026 Sherpa Global Association, Sikkim, India. All rights reserved.</span>
+      <span class="ft-copy">Preserving Sherpa Heritage · Tashi Delek 🙏</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Floating UI -->
+<button id="totop" aria-label="Scroll to top">↑</button>
+<div id="chip" aria-label="Live member count">
+  <div class="chip-dot" aria-hidden="true"></div>
+  <span>2,800+ members worldwide</span>
+</div>
+
+<!-- ================================================================
+     JAVASCRIPT
+     ================================================================ -->
+<script>
+/* ── Config ────────────────────────────────────────── */
+const nav  = document.getElementById('nav');
+const ham  = document.getElementById('ham');
+const mob  = document.getElementById('mob');
+const totop= document.getElementById('totop');
+const pfill= document.getElementById('pfill');
+const pct  = document.getElementById('pct');
+
+/* ── Particles ──────────────────────────────────────── */
+(function initParticles(){
+  const container = document.getElementById('particles');
+  if(!container) return;
+  for(let i=0;i<22;i++){
+    const pt = document.createElement('span');
+    pt.className = 'pt';
+    const dur  = 9 + Math.random()*8;
+    const del  = Math.random()*10;
+    const left = Math.random()*100;
+    pt.style.cssText = `
+      left:${left}%;
+      animation-duration:${dur}s;
+      animation-delay:${del}s;
+      width:${Math.random()<0.4?3:2}px;
+      height:${Math.random()<0.4?3:2}px;
+    `;
+    container.appendChild(pt);
+  }
+})();
+
+/* ── Scroll behaviours ──────────────────────────────── */
+let lastY = 0;
+window.addEventListener('scroll', () => {
+  const y = window.scrollY;
+
+  /* Nav glass */
+  nav.classList.toggle('sc', y > 60);
+
+  /* To-top button */
+  totop.classList.toggle('show', y > 400);
+
+  lastY = y;
+}, { passive: true });
+
+/* ── Mobile menu ────────────────────────────────────── */
+function closeMob(){
+  ham.classList.remove('o');
+  mob.classList.remove('o');
+  ham.setAttribute('aria-expanded','false');
+  mob.setAttribute('aria-hidden','true');
+  document.body.style.overflow='';
+}
+ham.addEventListener('click', () => {
+  const open = ham.classList.toggle('o');
+  mob.classList.toggle('o', open);
+  ham.setAttribute('aria-expanded', open);
+  mob.setAttribute('aria-hidden', !open);
+  document.body.style.overflow = open ? 'hidden' : '';
+});
+mob.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMob));
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeMob(); });
+
+/* ── To-top ─────────────────────────────────────────── */
+totop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+/* ── IntersectionObserver — reveals ─────────────────── */
+const revObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting){ e.target.classList.add('in'); revObs.unobserve(e.target); }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+
+document.querySelectorAll('.rv,.rv-l,.rv-r').forEach(el => revObs.observe(el));
+
+/* ── Timeline observer ───────────────────────────────── */
+const tlObs = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if(e.isIntersecting){
+      setTimeout(() => {
+        e.target.classList.add('in');
+        tlObs.unobserve(e.target);
+      }, i * 90);
+    }
+  });
+}, { threshold: 0.18 });
+document.querySelectorAll('.tl-it').forEach(el => tlObs.observe(el));
+
+/* ── Stat counters ───────────────────────────────────── */
+function animateCounter(el, target, suffix='', duration=1800){
+  let start = null;
+  const step = (ts) => {
+    if(!start) start = ts;
+    const prog = Math.min((ts - start) / duration, 1);
+    const val = Math.floor(prog * target);
+    el.textContent = val.toLocaleString() + (prog===1 ? suffix : '');
+    if(prog < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+const statObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      const el = e.target;
+      const target = parseInt(el.dataset.target, 10);
+      const suffix = el.dataset.suffix || '';
+      animateCounter(el, target, suffix);
+      statObs.unobserve(el);
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('[data-target]').forEach(el => statObs.observe(el));
+
+/* ── Progress bar ────────────────────────────────────── */
+if(pfill){
+  const pbObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        const t = parseInt(pfill.dataset.target, 10);
+        pfill.style.width = t + '%';
+        pct.textContent = t + '% Funded';
+        pbObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.4 });
+  pbObs.observe(pfill);
+}
+
+/* ── Donation amount buttons ─────────────────────────── */
+const customAmt = document.getElementById('customAmt');
+document.querySelectorAll('.amt').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.amt').forEach(b => b.classList.remove('on'));
+    btn.classList.add('on');
+    if(customAmt){
+      customAmt.style.display = btn.dataset.amt === 'custom' ? 'block' : 'none';
+    }
+  });
+});
+
+/* ── Donate button ───────────────────────────────────── */
+const donateBtn = document.getElementById('donateBtn');
+if(donateBtn){
+  donateBtn.addEventListener('click', () => {
+    const active = document.querySelector('.amt.on');
+    const amt = active ? active.dataset.amt : '';
+    alert(`Thank you for your generous support! 🙏\n\nYour contribution of ${amt==='custom' ? 'a custom amount' : amt} helps preserve Sherpa heritage.\n\nPayment gateway integration coming soon.\nFor now, please contact: info@sherpaglobal.org\n\nTashi Delek!`);
+  });
+}
+
+/* ── Smooth close mobile when clicking outside ─────────── */
+mob.addEventListener('click', (e) => {
+  if(e.target === mob) closeMob();
+});
+
+</script>
+</body>
+</html>
