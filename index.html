@@ -1187,10 +1187,6 @@ const isMobile = window.innerWidth < 821;
 const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /* ── Helper: skip animations when reduced motion ── */
-function gsapSafe(...args){
-  if(!prefersReduced && !isMobile) return gsap.to(...args);
-  return { kill(){}, then(){ return Promise.resolve(); } };
-}
 
 /* ── Custom cursor (desktop only) ─────────────────── */
 if(!isMobile && !prefersReduced){
@@ -1295,17 +1291,24 @@ document.addEventListener('keydown', e => { if(e.key==='Escape') closeMob(); });
 mob.addEventListener('click', e => { if(e.target === mob) closeMob(); });
 
 /* ── GSAP ScrollTrigger reveals ───────────────────── */
-if(!prefersReduced && !isMobile){
-  gsap.registerPlugin(ScrollTrigger);
-  gsap.utils.toArray('.gs_reveal').forEach((el, i) => {
-    gsap.from(el, {
-      scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' },
-      y: 40, opacity: 0, duration: 0.8,
-      ease: 'power2.out',
-      delay: i * 0.05,
+try {
+  if(!prefersReduced && !isMobile && typeof gsap !== 'undefined'){
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.utils.toArray('.gs_reveal').forEach((el, i) => {
+      gsap.from(el, {
+        scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' },
+        y: 40, opacity: 0, duration: 0.8,
+        ease: 'power2.out',
+        delay: i * 0.05,
+      });
     });
-  });
-} else {
+  } else {
+    revealAll();
+  }
+} catch(e){
+  revealAll();
+}
+function revealAll(){
   document.querySelectorAll('.gs_reveal').forEach(el => el.style.opacity = '1');
 }
 
