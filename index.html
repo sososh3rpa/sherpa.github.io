@@ -209,8 +209,7 @@ input,textarea,select{font-family:inherit}
   color:var(--burgundy);
   background:var(--gold-pale);
 }
-.gs_reveal{opacity:0;transform:translateY(30px)}
-.gs_reveal_80{opacity:0;transform:translateY(50px)}
+.gs_reveal{opacity:1;transform:translateY(0)}
 
 /* =================================================================
    NAV
@@ -1168,6 +1167,7 @@ footer{
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" crossorigin="anonymous"></script>
 
 <script>
+try {
 /* ── Element refs ─────────────────────────────────── */
 const nav      = document.getElementById('nav');
 const ham      = document.getElementById('ham');
@@ -1290,27 +1290,20 @@ mob.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMob));
 document.addEventListener('keydown', e => { if(e.key==='Escape') closeMob(); });
 mob.addEventListener('click', e => { if(e.target === mob) closeMob(); });
 
-/* ── GSAP ScrollTrigger reveals ───────────────────── */
+/* ── GSAP ScrollTrigger reveals (progressive enhancement) ─ */
 try {
   if(!prefersReduced && !isMobile && typeof gsap !== 'undefined'){
     gsap.registerPlugin(ScrollTrigger);
     gsap.utils.toArray('.gs_reveal').forEach((el, i) => {
-      gsap.from(el, {
+      gsap.fromTo(el, { y: 40, opacity: 0 }, {
         scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' },
-        y: 40, opacity: 0, duration: 0.8,
+        y: 0, opacity: 1, duration: 0.8,
         ease: 'power2.out',
         delay: i * 0.05,
       });
     });
-  } else {
-    revealAll();
   }
-} catch(e){
-  revealAll();
-}
-function revealAll(){
-  document.querySelectorAll('.gs_reveal').forEach(el => el.style.opacity = '1');
-}
+} catch(e){}  /* GSAP is optional — content always visible */
 
 /* ── 3D tilt cards (desktop only) ─────────────────── */
 if(!isMobile && !prefersReduced){
@@ -1460,6 +1453,7 @@ totop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smoot
     container.scrollBy({ left: e.deltaY, behavior: 'auto' });
   }, { passive: false });
 })();
+} catch(e){ console.warn('SGA non-critical error:', e); }
 </script>
 </body>
 </html>
