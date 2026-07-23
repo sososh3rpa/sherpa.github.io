@@ -1363,6 +1363,159 @@ footer{
 }
 
 /* ================================================================
+   MOBILE BOTTOM NAV
+   ================================================================ */
+.mob-nav{
+  display:none;
+  position:fixed;
+  bottom:0;inset-inline:0;
+  z-index:850;
+  background:rgba(6,8,15,0.94);
+  backdrop-filter:blur(24px);
+  -webkit-backdrop-filter:blur(24px);
+  border-top:1px solid rgba(200,146,42,0.15);
+  padding:.35rem env(safe-area-inset-right,8px) calc(.35rem + env(safe-area-inset-bottom,0px)) env(safe-area-inset-left,8px);
+}
+.mob-nav-inner{
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+  max-width:500px;
+  margin-inline:auto;
+}
+.mn-item{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:2px;
+  padding:.3rem .5rem;
+  border-radius:8px;
+  transition:all var(--fast);
+  cursor:pointer;
+  min-width:0;
+  flex:1;
+  text-decoration:none;
+  border:none;
+  background:none;
+  color:var(--stone);
+  position:relative;
+}
+.mn-item.active{color:var(--gold)}
+.mn-item.active::after{
+  content:'';
+  position:absolute;
+  top:-.35rem;left:50%;
+  transform:translateX(-50%);
+  width:20px;height:2px;
+  background:var(--gold);
+  border-radius:2px;
+}
+.mn-ic{
+  font-size:1.15rem;
+  line-height:1;
+  transition:transform var(--fast) var(--ease-spring);
+}
+.mn-item.active .mn-ic{transform:scale(1.15)}
+.mn-lb{
+  font-family:var(--fm);
+  font-size:.5rem;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  white-space:nowrap;
+}
+@media(max-width:820px){.mob-nav{display:block}}
+@media(min-width:821px){.mob-nav{display:none!important}}
+
+/* ── Section scroll snap (mobile only) ──────────────── */
+@media(max-width:820px){
+  html{scroll-snap-type:y proximity}
+  .sec,#hero,footer{scroll-snap-align:start}
+}
+
+/* ── Mountain section divider ───────────────────────── */
+.sec-divider{
+  position:relative;
+  height:clamp(40px,8vw,80px);
+  overflow:hidden;
+  pointer-events:none;
+  background:var(--bg-main);
+}
+.sec-divider svg{
+  position:absolute;
+  bottom:0;left:0;
+  width:100%;height:100%;
+  display:block;
+}
+.sec-divider.top svg{transform:rotate(180deg)}
+
+/* ── Section background transitions ─────────────────── */
+.sec{-webkit-overflow-scrolling:touch}
+
+/* ── Mobile event cards: horizontal swipe ──────────── */
+@media(max-width:540px){
+  .ev-grid{
+    display:flex;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+    gap:1rem;
+    padding-bottom:1rem;
+    scrollbar-width:none;
+    margin-left:calc(-1 * clamp(1rem,5vw,3rem));
+    margin-right:calc(-1 * clamp(1rem,5vw,3rem));
+    padding-left:clamp(1rem,5vw,3rem);
+    padding-right:clamp(1rem,5vw,3rem);
+  }
+  .ev-grid::-webkit-scrollbar{display:none}
+  .ev{
+    flex:0 0 82%;
+    scroll-snap-align:start;
+    min-width:260px;
+  }
+}
+
+/* ── Mobile culture cards: full width ──────────────── */
+@media(max-width:560px){
+  .culture-grid{display:flex;flex-direction:column;gap:1rem}
+}
+
+/* ── Touch-friendly mobile improvements ────────────── */
+@media(max-width:820px){
+  .info-tile{padding:1.2rem 1rem}
+  .about-card{padding:1.5rem}
+  .lcard{padding:1.2rem 1rem}
+  .cause{padding:1rem}
+  .amt{padding:.85rem .5rem;font-size:.75rem}
+  .d-inp{padding:1rem;font-size:.95rem}
+  .d-submit{padding:1.1rem;font-size:.78rem}
+  .hero-title{font-size:clamp(1.8rem,9vw,2.5rem)}
+  .hero-desc{font-size:.95rem}
+  .hero-stats{gap:0}
+  .h-stat{padding:1rem .6rem}
+  .stitle{font-size:clamp(1.5rem,7vw,1.9rem)}
+  .nav-logo{font-size:.85rem}
+  .stag{font-size:.58rem}
+  .ev-t{font-size:.95rem}
+  .fc-name{font-size:.95rem}
+  .cc-title{font-size:1rem}
+  .don-h{font-size:clamp(1.5rem,7vw,1.9rem)}
+  .ft-grid{grid-template-columns:1fr 1fr;gap:1.5rem}
+}
+
+/* ── Smooth tap highlight ──────────────────────────── */
+@media(hover:none){
+  .cc:hover::after{transform:scaleX(0)}
+  .fc:hover::after{width:0}
+  .lcard:hover::before{transform:scaleX(0)}
+  .ev:hover{transform:none}
+  .cc:hover,.fc:hover,.lcard:hover,.ev:hover{transform:none!important}
+  .cc:active::after{transform:scaleX(1)}
+  .fc:active::after{width:100%}
+  .lcard:active::before{transform:scaleX(1)}
+  .ev:active{transform:scale(.98)!important;border-color:var(--border-g)}
+}
+
+/* ================================================================
    FLOATING UI ELEMENTS
    ================================================================ */
 #totop{
@@ -1378,9 +1531,13 @@ footer{
   transition:opacity var(--fast),transform var(--fast);
   box-shadow:0 6px 20px var(--gold-glow);
   border:none;
+  cursor:pointer;
 }
 #totop.show{opacity:1;transform:scale(1) translateY(0)}
 #totop:hover{transform:scale(1.08) translateY(0)}
+@media(max-width:820px){
+  #totop{bottom:calc(4.2rem + env(safe-area-inset-bottom,0px));right:1rem;width:40px;height:40px}
+}
 
 #chip{
   position:fixed;bottom:2rem;left:2rem;z-index:700;
@@ -1395,6 +1552,9 @@ footer{
   color:var(--stone);
   backdrop-filter:blur(12px);
   -webkit-backdrop-filter:blur(12px);
+}
+@media(max-width:820px){
+  #chip{bottom:calc(4.2rem + env(safe-area-inset-bottom,0px));left:1rem}
 }
 .chip-dot{
   width:6px;height:6px;border-radius:50%;
@@ -1562,7 +1722,12 @@ footer{
   </div>
 </section>
 
-<div class="divider"></div>
+<div class="sec-divider" aria-hidden="true">
+  <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,80 L0,50 L120,35 L240,48 L360,28 L480,40 L600,22 L720,35 L840,18 L960,30 L1080,38 L1200,28 L1320,42 L1440,35 L1440,80 Z" fill="rgba(200,146,42,0.055)"/>
+    <path d="M0,80 L0,60 L200,48 L400,55 L600,42 L800,52 L1000,40 L1200,48 L1440,45 L1440,80 Z" fill="rgba(200,146,42,0.03)"/>
+  </svg>
+</div>
 
 <!-- ── ABOUT ─────────────────────────────────────── -->
 <section id="about" class="sec" aria-label="About the Sherpa People">
@@ -1658,7 +1823,12 @@ footer{
   </div>
 </section>
 
-<div class="divider"></div>
+<div class="sec-divider" aria-hidden="true">
+  <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,80 L0,50 L120,35 L240,48 L360,28 L480,40 L600,22 L720,35 L840,18 L960,30 L1080,38 L1200,28 L1320,42 L1440,35 L1440,80 Z" fill="rgba(200,146,42,0.055)"/>
+    <path d="M0,80 L0,60 L200,48 L400,55 L600,42 L800,52 L1000,40 L1200,48 L1440,45 L1440,80 Z" fill="rgba(200,146,42,0.03)"/>
+  </svg>
+</div>
 
 <!-- ── HERITAGE TIMELINE ──────────────────────────── -->
 <section id="heritage" class="sec" aria-label="Heritage and History">
@@ -1865,7 +2035,12 @@ footer{
   </div>
 </section>
 
-<div class="divider"></div>
+<div class="sec-divider" aria-hidden="true">
+  <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,80 L0,50 L120,35 L240,48 L360,28 L480,40 L600,22 L720,35 L840,18 L960,30 L1080,38 L1200,28 L1320,42 L1440,35 L1440,80 Z" fill="rgba(200,146,42,0.055)"/>
+    <path d="M0,80 L0,60 L200,48 L400,55 L600,42 L800,52 L1000,40 L1200,48 L1440,45 L1440,80 Z" fill="rgba(200,146,42,0.03)"/>
+  </svg>
+</div>
 
 <!-- ── LANGUAGE ─────────────────────────────────────── -->
 <section id="language" class="sec" aria-label="Sherpa Language">
@@ -2047,7 +2222,12 @@ footer{
   </div>
 </section>
 
-<div class="divider"></div>
+<div class="sec-divider" aria-hidden="true">
+  <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,80 L0,50 L120,35 L240,48 L360,28 L480,40 L600,22 L720,35 L840,18 L960,30 L1080,38 L1200,28 L1320,42 L1440,35 L1440,80 Z" fill="rgba(200,146,42,0.055)"/>
+    <path d="M0,80 L0,60 L200,48 L400,55 L600,42 L800,52 L1000,40 L1200,48 L1440,45 L1440,80 Z" fill="rgba(200,146,42,0.03)"/>
+  </svg>
+</div>
 
 <!-- ── LEADERSHIP ─────────────────────────────────────── -->
 <section id="leadership" class="sec" aria-label="Association Leadership">
@@ -2213,7 +2393,12 @@ footer{
   </div>
 </section>
 
-<div class="divider"></div>
+<div class="sec-divider" aria-hidden="true">
+  <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,80 L0,50 L120,35 L240,48 L360,28 L480,40 L600,22 L720,35 L840,18 L960,30 L1080,38 L1200,28 L1320,42 L1440,35 L1440,80 Z" fill="rgba(200,146,42,0.06)"/>
+    <path d="M0,80 L0,60 L200,48 L400,55 L600,42 L800,52 L1000,40 L1200,48 L1440,45 L1440,80 Z" fill="rgba(200,146,42,0.035)"/>
+  </svg>
+</div>
 
 <!-- ── DONATION ─────────────────────────────────────── -->
 <section id="donate" class="sec" aria-label="Support and Donations">
@@ -2390,6 +2575,32 @@ footer{
     </div>
   </div>
 </footer>
+
+<!-- Mobile Bottom Nav -->
+<nav class="mob-nav" aria-label="Mobile navigation">
+  <div class="mob-nav-inner">
+    <a href="#hero" class="mn-item active" data-sec="hero">
+      <span class="mn-ic">🏔</span>
+      <span class="mn-lb">Home</span>
+    </a>
+    <a href="#about" class="mn-item" data-sec="about">
+      <span class="mn-ic">📖</span>
+      <span class="mn-lb">About</span>
+    </a>
+    <a href="#culture" class="mn-item" data-sec="culture">
+      <span class="mn-ic">🎭</span>
+      <span class="mn-lb">Culture</span>
+    </a>
+    <a href="#events" class="mn-item" data-sec="events">
+      <span class="mn-ic">📅</span>
+      <span class="mn-lb">Events</span>
+    </a>
+    <a href="#donate" class="mn-item" data-sec="donate">
+      <span class="mn-ic">🤝</span>
+      <span class="mn-lb">Support</span>
+    </a>
+  </div>
+</nav>
 
 <!-- Floating UI -->
 <button id="totop" aria-label="Scroll to top">↑</button>
@@ -2581,6 +2792,22 @@ if(donateBtn){
 mob.addEventListener('click', (e) => {
   if(e.target === mob) closeMob();
 });
+
+/* ── Mobile bottom nav active tracking ────────────── */
+function updateActiveNav(){
+  const mnItems = document.querySelectorAll('.mn-item');
+  if(!mnItems.length) return;
+  const scrollY = window.scrollY + 120;
+  let activeSec = 'hero';
+  document.querySelectorAll('section[id], footer').forEach(sec => {
+    if(sec.offsetTop <= scrollY) activeSec = sec.id || 'hero';
+  });
+  mnItems.forEach(item => {
+    item.classList.toggle('active', item.dataset.sec === activeSec);
+  });
+}
+window.addEventListener('scroll', updateActiveNav, { passive: true });
+window.addEventListener('load', updateActiveNav);
 
 </script>
 </body>
